@@ -20,7 +20,7 @@
             style=""
           />
         </div>
-        <div class=" h-[auto] mobile-only:pl-[23px] p-[21px]  ">
+        <div class=" h-[150px] mobile-only:pl-[23px] p-[21px]  ">
           <a href="">
             <h2
               class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-[Rokkitt] text-center"
