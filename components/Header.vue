@@ -11,7 +11,7 @@
 			<div class="flex justify-between">
 				<div class="w-3/4">
 					<div id="colorlib-logo" class="text-[34px] m-0 p-0 font-bold mobile-only:mb-[10px]">
-					<a class="relative text-gray-600 font-sans" href="index.html">Footwear</a></div>
+					<NuxtLink to="/index" class="relative text-gray-600 font-sans">Footwear</NuxtLink></div>
 				</div>
 				<Hamburger />
 				</div>
@@ -44,26 +44,24 @@
 					<ul class="p-0 mt-[20px] mr-[0px] mb-[0px] ml-[-12px]">
 						<li
 							class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<a href="index.htm"
-								class="text-[#88c8bc] pt-[10px] pb-[10px] pl-[12px] pr-[12px] relative">Home</a>
+							<NuxtLink to="/index" class="text-[#88c8bc] pt-[10px] pb-[10px] pl-[12px] pr-[12px] relative">Home</NuxtLink>
 						</li>
 						<dropdown />
 						<li
 							class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<a href="women.html"
-								class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">Women</a></li>
+							<NuxtLink to="/women" class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">Women</NuxtLink>
+						</li>
 						<li
 							class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<a href="about.html"
-								class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">About</a></li>
+							<NuxtLink to="/about" class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">About</NuxtLink>
+						</li>
 						<li
 							class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<a href="contact.html"
-								class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">Contact</a></li>
+							<NuxtLink to="/contact" class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black">Contact</NuxtLink>
+		                </li>
 						<li
 							class="cart float-right p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<a href="cart.html"
-								class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black flex">
+							<NuxtLink to="/cart" class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black flex">
 								<i class="pr-[8px] ">
 									<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
 										viewBox="0 0 1024 1024">
@@ -72,7 +70,7 @@
 										</svg>
 								</i>
 								Cart [0]
-							</a>
+							</NuxtLink>
 						</li>
 					</ul>
 				</div>

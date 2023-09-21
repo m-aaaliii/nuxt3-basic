@@ -10,14 +10,15 @@
       class="hidden  Tab-only:hidden mobile-only:block fixed top-0 right-0 w-[270px] h-screen bg-black  z-[20] transform transition-transform duration-300 pt-[75px] pr-[40px] pb-[40px] pl-[40px]"
       :class="{ 'translate-x-100': mobileMenuOpen, 'translate-x-full': !mobileMenuOpen }"
     >
-      <ul class="p-[0px] m-[0px]">
+      <ul class="p-[0px] m-[0px] font-sans text-[14px]">
         <!-- Mobile menu items -->
-        <li><a href="index.htm" class="block p-0 m-0 text-white opacity-50 list-none">Home</a></li>
-        <li><a href="women.html" class="block p-0 m-0 text-white opacity-50 list-none">Women</a></li>
-        <li><a href="about.html" class="block p-0 m-0 text-white opacity-50 list-none">About</a></li>
-        <li><a href="contact.html" class="block p-0 m-0 text-white opacity-50 list-none">Contact</a></li>
+        <li><NuxtLink to="/index" class="block p-0 m-0 text-white opacity-50 list-none">Home</NuxtLink></li>
+        <li><NuxtLink to="/men" class="block p-0 m-0 text-white opacity-50 list-none">Men</NuxtLink></li>
+        <li><NuxtLink to="/women" class="block p-0 m-0 text-white opacity-50 list-none">Women</NuxtLink></li>
+        <li><NuxtLink to="/about" class="block p-0 m-0 text-white opacity-50 list-none">About</NuxtLink></li>
+        <li><NuxtLink to="/contact" class="block p-0 m-0 text-white opacity-50 list-none">Contact</NuxtLink></li>
         <li>
-          <a href="cart.html" class="block p-0 m-0 text-white opacity-50 list-none">
+        <NuxtLink to="/cart" class="block p-0 m-0 text-white opacity-50 list-none">
             <i class="pr-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
 										viewBox="0 0 1024 1024" class="inline-block relative top-[-3px]">
@@ -26,7 +27,7 @@
 										</svg>
             </i>
             Cart [0]
-          </a>
+        </NuxtLink>
         </li>
       </ul>
      
