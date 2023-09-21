@@ -2,6 +2,7 @@
     <div>
         <SlidersRibbonSlider />
         <SlidersHomeSlider/>
+        <cardpage />
     </div>
 </template>
 
