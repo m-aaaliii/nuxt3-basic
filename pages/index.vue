@@ -2,7 +2,9 @@
     <div>
         <SlidersRibbonSlider />
         <SlidersHomeSlider/>
-        <cardpage />
+        <div class="text-center text-[40px] mb-[20px] leading-[1.5] font-[700] text-[#000] uppercase">
+        <cardpage :message= "'Best Sellers'" />
+        </div>
     </div>
 </template>
 
