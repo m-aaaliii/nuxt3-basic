@@ -14,7 +14,8 @@
     "autoprefixer": "^10.4.15",
     "nuxt": "^3.7.3",
     "postcss": "^8.4.30",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "nuxt-icon": "^0.5.0"
   },
   "dependencies": {
     "nuxt-swiper": "^1.2.2",
