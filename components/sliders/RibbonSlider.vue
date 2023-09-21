@@ -2,7 +2,9 @@
 <Carousel :autoplay="3000" :wrap-around="true">
     <Slide v-for="slide in slides" :key="slide.id">
       <div class="carousel__item">
-        <h2 class="text-[#fff] text-[16] md:text-[22px] uppercase font-[300] leading-[1.5] font-['Montserrat, Arial, sans-serif']">{{slide.title}}</h2>
+        <h2 class="text-[#fff] text-[16] md:text-[22px] uppercase font-[300] leading-[1.5] font-['Montserrat, Arial, sans-serif']">
+          {{slide.title}}
+        </h2>
       </div>
     </Slide>
     <template #addons>
