@@ -23,13 +23,13 @@
         <div class=" h-[150px] mobile-only:pl-[23px] p-[21px]  ">
           <a href="">
             <h2
-              class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-[Rokkitt] text-center"
+              class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-rokkitt text-center"
             >
               {{product.title}}
             </h2>
           </a>
           <span
-            class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-[Rokkitt]"
+            class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-rokkitt"
           >
             <p class="text-center">$ {{product.price}}</p>
           </span>
@@ -45,6 +45,7 @@ const { data } = await useFetch('https://fakestoreapi.com/products?limit=16')
 console.log("some data is received: ", data.value);
 const props = defineProps({
   message: String,
+
 })
 
 </script>
