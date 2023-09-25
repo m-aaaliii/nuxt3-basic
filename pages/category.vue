@@ -1,4 +1,5 @@
 <template>
+    <BreadCrumbs :link= "'Men'"/>
     <div class="text-[20px] text-black text-opacity-30 text-center tracking-wide mb-[20px] leading-6 font-bold relative uppercase">
         <cardpage :message= "'View All Products'"/>
     </div>
