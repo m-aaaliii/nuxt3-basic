@@ -11,7 +11,7 @@
 			<div class="flex justify-between">
 				<div class="w-3/4">
 					<div id="colorlib-logo" class="text-[34px] m-0 p-0 font-bold mobile-only:mb-[10px]">
-					<NuxtLink to="/index" class="relative text-gray-600 font-sans">Footwear</NuxtLink></div>
+					<NuxtLink to="/" class="relative text-gray-600 font-sans">Footwear</NuxtLink></div>
 				</div>
 				<Hamburger />
 				</div>
@@ -39,12 +39,12 @@
 				</div>
 
 			</div>
-			<div class="flex flex-wrap mr-[-15px] ml-[-15px] mobile-only:hidden">
+			<div class="flex flex-wrap mobile-only:hidden">
 				<div class="w-[100%] block text-left">
 					<ul class="p-0 mt-[20px] mr-[0px] mb-[0px] ml-[-12px]">
 						<li
 							class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider">
-							<NuxtLink to="/index" class="text-[#88c8bc] pt-[10px] pb-[10px] pl-[12px] pr-[12px] relative">Home</NuxtLink>
+							<NuxtLink to="/" class="text-[#88c8bc] pt-[10px] pb-[10px] pl-[12px] pr-[12px] relative">Home</NuxtLink>
 						</li>
 						<dropdown />
 						<li

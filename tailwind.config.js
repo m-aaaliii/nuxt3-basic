@@ -11,7 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        rokkitt: ['Rokkitt', 'Georgia', 'serif'],
+        rokkitt: ['Rokkitt', 'serif'],
+        montserrat: ['Montserrat', 'sans-serif']
       },
     },
   },
