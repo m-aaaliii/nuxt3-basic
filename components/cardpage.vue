@@ -1,6 +1,6 @@
 <template>
 <div class="container mx-auto px-[15px] pt-[8rem]">
-    <div class="mb-[5rem] px-[15px] font-rokkitt mobile-only:mb-[2.5em] ">
+    <div class="mb-[5rem] font-rokkitt mobile-only:mb-[2.5em]">
         <h2>
             {{ message }}
         </h2>
