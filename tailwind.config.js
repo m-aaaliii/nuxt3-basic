@@ -12,7 +12,7 @@ export default {
     extend: {
       fontFamily: {
         rokkitt: ['Rokkitt', 'serif'],
-        montserrat: ['Montserrat', 'sans-serif']
+        montserrat: ['Montserrat', 'Arial', 'sans-serif'],
       },
     },
   },

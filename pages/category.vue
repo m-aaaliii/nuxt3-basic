@@ -1,4 +1,5 @@
 <template>
+    <BreadCrumbs :link= "'Men'"/>
     <div>
         <div class="container mx-auto px-[15px]">
             <div class="relative categoryHeader w-full">
@@ -24,6 +25,7 @@
             <cardpage :message= "'View All Products'"/>
         </div>
     </div>
+ 
 </template>
 
 <script setup>
