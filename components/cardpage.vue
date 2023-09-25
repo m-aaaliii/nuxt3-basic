@@ -1,15 +1,15 @@
 <template>
 <div class="container mx-auto px-[15px] pt-[8rem]">
-    <div class="mb-[5rem] px-[15px] font-rokkitt mobile-only:mb-[2.5em] ">
+    <div class="mb-[5rem] font-rokkitt mobile-only:mb-[2.5em]">
         <h2>
             {{ message }}
         </h2>
     </div>
 <div
-    class="grid grid-cols-4 gap-[14px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1  "
+    class="grid grid-cols-4 gap-[14px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1"
   >
     <div v-for="(product, index) in data" :key="index"
-      class="px-[15px] Lap-only:flex Tab-only:pb-[20px]  mobile-only:mobile-only:p-[9px]"
+      class="Lap-only:flex Tab-only:pb-[20px]  mobile-only:mobile-only:p-[9px]"
     >
       <div  class="border-b-0.5 border-[1px] border-solid border-[#dee2e6]" >
         <div class="h-[280px]  Tab-only:h-[338px] flex justify-center items-center mobile-only:h-[260px] ">

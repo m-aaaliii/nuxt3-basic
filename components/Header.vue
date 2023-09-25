@@ -39,7 +39,7 @@
 				</div>
 
 			</div>
-			<div class="flex flex-wrap mr-[-15px] ml-[-15px] mobile-only:hidden">
+			<div class="flex flex-wrap mobile-only:hidden">
 				<div class="w-[100%] block text-left">
 					<ul class="p-0 mt-[20px] mr-[0px] mb-[0px] ml-[-12px]">
 						<li
