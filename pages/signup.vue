@@ -8,6 +8,9 @@
             <input class="font-[montserrat] font-[300]" id="signupPassword" type="password" name="password" placeholder="Password" required />
             <button class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn">sign up</button>
         </form>
+        <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
+            <p>Already have an account? <NuxtLink to="/login" class="text-[#88C8BC] cursor-pointer font-[600]">Login</NuxtLink></p>
+        </div>
     </div>
 </template>
 
