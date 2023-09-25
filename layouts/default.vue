@@ -2,6 +2,8 @@
 
 <div>
     <Header />
+    <slidersRibbonSlider />
+     
     <div>
         <slot />
     </div>
@@ -10,4 +12,5 @@
 
 </template>
 
-<script setup></script>
+<script setup>
+</script>
