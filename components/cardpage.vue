@@ -1,8 +1,8 @@
 <template>
-<div class="container mx-auto">
-    <div class="mb-[5em] px-[15px] font-[Rokkitt] mobile-only:mb-[2.5em] ">
-        <h2 class="text-center text-[40px] mb-[20px] leading-[1.5] font-[700] text-[#000] uppercase">
-            BEST SELLERS
+<div class="container mx-auto px-[15px] pt-[8rem]">
+    <div class="mb-[5rem] px-[15px] font-rokkitt mobile-only:mb-[2.5em] ">
+        <h2>
+            {{ message }}
         </h2>
     </div>
 <div
@@ -23,13 +23,13 @@
         <div class=" h-[150px] mobile-only:pl-[23px] p-[21px]  ">
           <a href="">
             <h2
-              class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-[Rokkitt] text-center"
+              class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-rokkitt text-center"
             >
               {{product.title}}
             </h2>
           </a>
           <span
-            class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-[Rokkitt]"
+            class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-rokkitt"
           >
             <p class="text-center">$ {{product.price}}</p>
           </span>
@@ -43,6 +43,10 @@
 <script setup>
 const { data } = await useFetch('https://fakestoreapi.com/products?limit=16')
 console.log("some data is received: ", data.value);
+const props = defineProps({
+  message: String,
+
+})
 
 </script>
 <style scoped>
