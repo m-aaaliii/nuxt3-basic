@@ -2,8 +2,7 @@
 
 <div>
     <Header />
-    <slidersRibbonSlider />
-     
+    <slidersRibbonSlider />    
     <div>
         <slot />
     </div>
