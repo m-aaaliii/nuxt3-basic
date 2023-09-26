@@ -5,18 +5,32 @@
             {{ message }}
         </h2>
     </div>
-   <card />
+    <div class="grid grid-cols-4 gap-[14px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1">
+        <div v-for="(p, index) in data" :key="index"
+      class="px-[15px] Lap-only:flex Tab-only:pb-[20px]  mobile-only:mobile-only:p-[9px]"
+    >
+    <NuxtLink :to="`/product/${p.id}`">
+        <card :img="p.image" :title="p.title" :price="p.price" />
+    </NuxtLink>
+    </div>
+    </div>
 </div>
   
 </template>
+
+
 <script setup>
-const { data } = await useFetch('https://fakestoreapi.com/products?limit=16')
+
+const { data } = await useFetch('https://fakestoreapi.com/products')
 console.log("some data is received: ", data.value);
+
 const props = defineProps({
   message: String,
 
 })
 
 </script>
+
+
 <style scoped>
 </style>
