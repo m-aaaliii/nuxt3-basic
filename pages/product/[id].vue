@@ -4,11 +4,11 @@
     <div class="container mx-auto px-[15px]">
       <!-- Product View -->
       <div class="pb-[6em]">
-        <div class="flex mobile-only:block">
+        <div class="flex Tab-only:block mobile-only:block">
           <div
-            class="w-2/3 border border-solid border-gray-300 mobile-only:w-[100%] mobile-only:mb-[30px]"
+            class="w-2/3 border border-solid pt-[80px] pb-[80px] border-gray-300 Tab-only:w-[100%] Tab-only:mb-[30px] mobile-only:w-[100%] mobile-only:mb-[30px]"
           >
-            <div class="relative">
+            <div class="relative h-[400px]">
               <img
                 :src="data.image"
                 alt="product"
@@ -17,7 +17,9 @@
             </div>
           </div>
           <!-- Product Details -->
-          <div class="max-w-1/3 w-1/3 px-[15px] mobile-only:w-[100%]">
+          <div
+            class="max-w-1/3 w-1/3 px-[15px] Tab-only:w-[100%] mobile-only:w-[100%]"
+          >
             <section class="pl-[28px]">
               <h3
                 class="mb-[10px] uppercase text-[20px] block text-black font-[rokkitt]"
@@ -134,7 +136,7 @@
                   </button>
                 </div>
                 <div
-                  class="border border-gray-100 font-normal relative mb-[0] h-[44px]"
+                  class="border w-[100%] border-gray-100 font-normal relative mb-[0] h-[44px] text-center"
                 >
                   <input
                     min="1"
@@ -142,7 +144,7 @@
                     name="itemQuantity"
                     :value="count"
                     @change="handleChange"
-                    class="text-center mt-[10px] Tab-only:w-[75px] mobile-only:w-[200px]"
+                    class="text-center mt-[10px] mobile-only:w-[200px]"
                   />
                 </div>
                 <div class="col-auto">
@@ -167,7 +169,7 @@
               </div>
               <div>
                 <button
-                  class="border-none bg-[#616161] text-[white] px-[16px] py-[12px] rounded-md transition-all duration-250 items-center text-center ease-in text-[14px] hover:bg-[#000] flex justify-center Tab-only:px-[22px] mobile-only:py-[8px] mobile-only:px-[20px]"
+                  class="border-none bg-[#616161] text-[white] px-[24px] py-[8px] rounded-md transition-all duration-250 items-center text-center ease-in text-[14px] hover:bg-[#000] flex justify-center"
                   @click="updateCart"
                 >
                   <span class="text-[16px] mr-[10px]"
