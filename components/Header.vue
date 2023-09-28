@@ -51,8 +51,10 @@ const name = "FaSearch";
         </div>
       </div>
       <div class="flex flex-wrap mobile-only:hidden">
-        <div class="w-[100%] block text-left">
-          <ul class="p-0 mt-[20px] mr-[0px] mb-[0px] ml-[-12px]">
+        <div class="w-[100%] flex flex-wrap justify-between items-center">
+          <ul
+            class="p-0 mt-[20px] mr-[0px] mb-[0px] ml-[-12px] flex flex-wrap items-center"
+          >
             <li
               class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider color-text"
             >
@@ -65,12 +67,12 @@ const name = "FaSearch";
             <li
               class="relative p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider z-[10] color-text"
             >
-              <NuxtLink
+              <div
                 @mouseover="showDropdown = true"
                 @mouseleave="showDropdown = false"
-                to="/category"
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
-                >category
+              >
+                category
                 <div
                   v-if="showDropdown"
                   class="absolute mt-2 bg-white border border-gray-300 left-[0] top-[12px]"
@@ -78,26 +80,41 @@ const name = "FaSearch";
                   <div
                     class="pointer absolute top-[8px] left-[20px] w-[18px] h-[18px] bg-[#000] rotate-[50deg]"
                   ></div>
+                  <!-- sub categories -->
                   <ul
                     class="w-[140px] z-1002 text-white absolute top-[10px] left-0 text-left bg-[#000] p-[20px] rounded-md"
                   >
                     <li>
                       <NuxtLink
-                        to="/category"
+                        to="/men's clothing"
                         class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
                         >men</NuxtLink
                       >
                     </li>
                     <li>
                       <NuxtLink
-                        to="/category"
+                        to="/women's clothing"
                         class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
                         >women</NuxtLink
                       >
                     </li>
+                    <li>
+                      <NuxtLink
+                        to="/jewelery"
+                        class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
+                        >jewelery</NuxtLink
+                      >
+                    </li>
+                    <li>
+                      <NuxtLink
+                        to="/electronics"
+                        class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
+                        >electronics</NuxtLink
+                      >
+                    </li>
                   </ul>
                 </div>
-              </NuxtLink>
+              </div>
             </li>
             <li
               class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider color-text"
@@ -117,7 +134,8 @@ const name = "FaSearch";
                 >Contact</NuxtLink
               >
             </li>
-
+          </ul>
+          <ul class="flex flex-wrap items-center">
             <li
               class="relative p-[0] m-[0] float-right list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider z-[10] mt-[4px]"
             >
@@ -156,7 +174,7 @@ const name = "FaSearch";
               </NuxtLink>
             </li>
             <li
-              class="cart float-right p-[0] m-[0] mt-[-7px] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider flex items-center justify-center text-center"
+              class="cart float-right p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider flex items-center justify-center text-center"
             >
               <NuxtLink
                 to="/cart"

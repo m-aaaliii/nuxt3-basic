@@ -2,13 +2,12 @@
   <BreadCrumbs :link="'product details'" />
   <div class="py-[7em]">
     <div class="container mx-auto px-[15px]">
-      <!-- Product View -->
       <div class="pb-[6em]">
-        <div class="flex mobile-only:block">
+        <div class="flex Tab-only:block mobile-only:block">
           <div
-            class="w-2/3 border border-solid border-gray-300 mobile-only:w-[100%] mobile-only:mb-[30px]"
+            class="w-2/3 border border-solid pt-[80px] pb-[80px] border-gray-300 Tab-only:w-[100%] Tab-only:mb-[30px] mobile-only:w-[100%] mobile-only:mb-[30px]"
           >
-            <div class="relative">
+            <div class="relative h-[400px]">
               <img
                 :src="data.image"
                 alt="product"
@@ -17,7 +16,9 @@
             </div>
           </div>
           <!-- Product Details -->
-          <div class="max-w-1/3 w-1/3 px-[15px] mobile-only:w-[100%]">
+          <div
+            class="max-w-1/3 w-1/3 px-[15px] Tab-only:w-[100%] mobile-only:w-[100%]"
+          >
             <section class="pl-[28px]">
               <h3
                 class="mb-[10px] uppercase text-[20px] block text-black font-[rokkitt]"
@@ -120,21 +121,10 @@
                     class="border border-solid border-gray-300 py-[9px] px-[18px] mr-[4px] mb-[4px] cursor-pointer text-black hover:text-white rounded-md text-[16px] bg-[#f5f5f5] hover:bg-[#616161]"
                   >
                     -
-                    <!-- <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill="black"
-                        d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
-                      />
-                    </svg> -->
                   </button>
                 </div>
                 <div
-                  class="border border-gray-100 font-normal relative mb-[0] h-[44px]"
+                  class="border w-[100%] border-gray-100 font-normal relative mb-[0] h-[44px] text-center"
                 >
                   <input
                     min="1"
@@ -142,7 +132,7 @@
                     name="itemQuantity"
                     :value="count"
                     @change="handleChange"
-                    class="text-center mt-[10px] Tab-only:w-[75px] mobile-only:w-[200px]"
+                    class="text-center mt-[10px] mobile-only:w-[200px]"
                   />
                 </div>
                 <div class="col-auto">
@@ -151,23 +141,12 @@
                     class="border border-solid border-gray-300 py-[8px] px-[14px] ml-[4px] mb-[4px] cursor-pointer rounded-md text-[18px] bg-[#f5f5f5] hover:bg-[#616161] text-black hover:text-white"
                   >
                     +
-                    <!-- <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill="black"
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                      />
-                    </svg> -->
                   </button>
                 </div>
               </div>
               <div>
                 <button
-                  class="border-none bg-[#616161] text-[white] px-[16px] py-[12px] rounded-md transition-all duration-250 items-center text-center ease-in text-[14px] hover:bg-[#000] flex justify-center Tab-only:px-[22px] mobile-only:py-[8px] mobile-only:px-[20px]"
+                  class="border-none bg-[#616161] text-[white] px-[24px] py-[8px] rounded-md transition-all duration-250 items-center text-center ease-in text-[14px] hover:bg-[#000] flex justify-center"
                   @click="updateCart"
                 >
                   <span class="text-[16px] mr-[10px]"
@@ -182,12 +161,15 @@
                         d="M1015.66 284a31.82 31.82 0 0 0-25.998-13.502H310.526l-51.408-177.28c-20.16-69.808-68.065-77.344-87.713-77.344H34.333c-17.569 0-31.777 14.224-31.777 31.776S16.78 79.425 34.332 79.425h137.056c4.336 0 17.568 0 26.593 31.184l176.848 649.936c3.84 13.712 16.336 23.183 30.591 23.183h431.968c13.409 0 25.376-8.4 29.905-21.024l152.256-449.68c3.504-9.744 2.048-20.592-3.888-29.024zM815.026 720.194H429.539L328.387 334.066h616.096zM752.003 848.13c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80zm-288 0c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80z"
                       /></svg
                   ></span>
-                  Add to Cart
+                  <NuxtLink to="/cart"> Add to Cart</NuxtLink>
                 </button>
               </div>
             </section>
           </div>
         </div>
+      </div>
+      <div>
+        <TabsProductDescriptionTabs />
       </div>
     </div>
   </div>
