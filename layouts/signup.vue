@@ -1,6 +1,6 @@
 <template>
   <div>
-    <accountsHeader :subheading="'signup'" />
+    <accountsHeader />
     <div>
       <slot />
     </div>

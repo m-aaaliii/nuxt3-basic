@@ -7,7 +7,8 @@
         <h2
           class="uppercase text-[#000] text-[40px] font-[400] font-[rokkitt] leading-[1.5]"
         >
-          Men's
+          {{ category }}
+          <!-- Men -->
         </h2>
       </div>
       <div
@@ -34,14 +35,19 @@
     <div
       class="text-[20px] text-black text-opacity-30 text-center tracking-wide mb-[20px] leading-6 font-bold relative uppercase"
     >
-      <cardpage :message="'View All Products'" />
+      <cardpage :message="'View All Products'" :cat="{ category }" />
+      <!-- :heading="{ category }" -->
     </div>
   </div>
 </template>
 
 <script setup>
-const { data } = await useFetch("https://fakestoreapi.com/products");
-console.log("some data is received: ", data.value[0].category);
+const { category } = useRoute().params;
+console.log(category, " type of the cat");
+// const { data } = await useFetch(
+//   `https://fakestoreapi.com/products/category/${category}`
+// );
+// console.log("some data is received: ", data.value[0].category);
 </script>
 
 <style scoped>

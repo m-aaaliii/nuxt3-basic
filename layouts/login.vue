@@ -1,6 +1,6 @@
 <template>
   <div>
-    <accountsHeader :subheading="'login'" />
+    <accountsHeader />
     <div>
       <slot />
     </div>

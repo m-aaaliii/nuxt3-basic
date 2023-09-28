@@ -34,15 +34,6 @@ const props = defineProps({
                 >Home</NuxtLink
               >
             </li>
-            <li
-              class="p-[0] m-[0] list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider color-text"
-            >
-              <NuxtLink
-                to="/signup"
-                class="text-white pt-[10px] pb-[10px] pl-[12px] pr-[12px] relative"
-                >{{ subheading }}</NuxtLink
-              >
-            </li>
           </ul>
         </div>
       </div>

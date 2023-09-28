@@ -12,7 +12,7 @@
         >Email</label
       >
       <input
-        class="font-[montserrat] font-[300]"
+                class="font-[montserrat] font-[300]"
         id="signinEmail"
         type="email"
         name="email"
@@ -25,7 +25,7 @@
         >Password</label
       >
       <input
-        class="font-[montserrat] font-[300]"
+                class="font-[montserrat] font-[300]"
         id="signinPassword"
         type="password"
         name="password"
@@ -35,7 +35,7 @@
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
       >
-        login
+        <NuxtLink to="/cart">login</NuxtLink>
       </button>
     </form>
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
