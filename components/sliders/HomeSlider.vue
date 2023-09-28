@@ -28,6 +28,23 @@ const slides = [
   { id: '3', title: "HUGE", title2: 'SALE', title3: '50% OFF', title4:"Big Sale Sandals", content: '/slider3.jpg' },
 ]
 
+const props = defineProps({
+  brakpoints: Object,
+})
+
+const breakpoints = {
+  // 700px and up
+  700: {
+    itemsToShow: 1,
+    snapAlign: 'center',
+  },
+  // 1024 and up
+  1024: {
+    itemsToShow: 2,
+    snapAlign: 'start',
+  },
+};
+
 </script>
 
 <style scoped>

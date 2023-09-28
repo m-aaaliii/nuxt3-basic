@@ -1,13 +1,13 @@
 <template>
     <div>
         <!-- Tabs -->
-        <div class="flex">
-            <div class="shrink-0 grow-0 basis-auto">
+        <div class="flex flex-wrap">
+            <div class="grow-0 basis-auto">
                 <button @click="handleClick(1)" class="py-[0.5rem] px-[1rem] text-[12px] font-[montserrat] font-[300] uppercase rounded-[5px] border-[#f2f2f2] bg-[#f2f2f2] mr-[8px] hover:bg-[#616161] hover:text-white transition-all ease-in-out delay-250" :class="{active: activeParagraph === 1}">description</button>
         
-                <button @click="handleClick(2)" class="mr-[8px] py-[0.5rem] px-[1rem] text-[12px] font-[montserrat] font-[300] uppercase rounded-[5px] border-[#f2f2f2] bg-[#f2f2f2] hover:bg-[#616161] hover:text-white transition-all ease-in-out delay-250" :class="{active: activeParagraph === 2}">manufacturer</button>
+                <button @click="handleClick(2)" class="mt-3 md:mt-0 mr-[8px] py-[0.5rem] px-[1rem] text-[12px] font-[montserrat] font-[300] uppercase rounded-[5px] border-[#f2f2f2] bg-[#f2f2f2] hover:bg-[#616161] hover:text-white transition-all ease-in-out delay-250" :class="{active: activeParagraph === 2}">manufacturer</button>
             
-                <button @click="handleClick(3)" class="py-[0.5rem] px-[1rem] text-[12px] font-[montserrat] font-[300] uppercase rounded-[5px] border-[#f2f2f2] bg-[#f2f2f2] hover:bg-[#616161] hover:text-white transition-all ease-in-out delay-250" :class="{active: activeParagraph === 3}">review</button>
+                <button @click="handleClick(3)" class=" mt-3 md:mt-0 py-[0.5rem] px-[1rem] text-[12px] font-[montserrat] font-[300] uppercase rounded-[5px] border-[#f2f2f2] bg-[#f2f2f2] hover:bg-[#616161] hover:text-white transition-all ease-in-out delay-250" :class="{active: activeParagraph === 3}">review</button>
             </div>
         </div>
         <!-- Tab Content -->
@@ -28,7 +28,9 @@
                 <p class="mt-[24px]">When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
             </div>
             <div class="content" :class="{active: activeParagraph === 3}">
-                <card />
+                <CommentCard thumb="/person1.jpg" name="Miss Lu" date="28 Sep, 2023" :rating="1" description="Some random comment from some random person."/>
+                <CommentCard thumb="/person2.jpg" name="Miss Lu" date="01 June, 2023" :rating="4" description="Some random comment from some random person."/>
+                <CommentCard thumb="/person3.jpg" name="Miss Lu" date="12 March, 2023" :rating="2" description="Some random comment from some random person."/>
             </div>
         </div>
     </div>
