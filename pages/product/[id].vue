@@ -168,6 +168,9 @@
           </div>
         </div>
       </div>
+      <div>
+        <TabsProductDescriptionTabs />
+      </div>
     </div>
   </div>
 </template>
