@@ -16,7 +16,7 @@
 <script setup>
 const isAuthenticated = ref(false);
 definePageMeta({
-  middleware: ["auth"],
+middleware: ["auth"],
 });
 </script>
 

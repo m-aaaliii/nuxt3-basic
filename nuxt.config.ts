@@ -11,5 +11,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: [],
+  modules: ["nuxt-icon"],
 });
