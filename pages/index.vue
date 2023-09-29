@@ -10,6 +10,11 @@
 </template>
 
 <script setup>
+
+const { count, increment, decrement } = useCounter();
+
+
+
 const { data } = await useFetch("https://fakestoreapi.com/products");
 console.log("some data is received: ", data.value[0]);
 </script>

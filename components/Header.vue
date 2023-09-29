@@ -1,9 +1,15 @@
 <script setup>
+
+
 import { ref } from "vue";
 const showDropdown = ref(false);
 const showDropdown1 = ref(false);
 const name = "FaSearch";
+
+
 </script>
+
+
 <template>
   <div class="pt-[50px] pr-[0px] pb-[10px] pl-[0px]">
     <div class="container mx-auto pr-[15px] pl-[15px]">
