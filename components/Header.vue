@@ -187,6 +187,6 @@ const name = "FaSearch";
 </template>
 <style scoped>
 li.color-text a.router-link-exact-active {
-  color: #88c8bc;
+  color:#88c8bc;
 }
 </style>
