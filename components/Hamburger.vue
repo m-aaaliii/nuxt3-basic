@@ -90,10 +90,5 @@
 </template>
 
 <script setup>
-const mobileMenuOpen = ref(false);
-
-const toggleMobileMenu = () => {
-  mobileMenuOpen.value = !mobileMenuOpen.value;
-  console.log(mobileMenuOpen.value, " boolean 2");
-};
+const { mobileMenuOpen, toggleMobileMenu } = useHam();
 </script>
