@@ -45,7 +45,7 @@ const { category } = useRoute().params;
 console.log(category, " type of the cat");
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .categoryHeader {
   min-height: 300px;
 }
