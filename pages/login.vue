@@ -5,18 +5,19 @@
     >
       login
     </h1>
-    <form>
+    <form @submit.prevent="submitForm">
       <label
-        for="signinEmail"
+        for="signinUsername"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
-        >Email</label
+        >Username</label
       >
       <input
         class="font-[montserrat] font-[300]"
-        id="signinEmail"
-        type="email"
-        name="email"
-        placeholder="Email Address"
+        id="signinUsername"
+        type="text"
+        name="Username"
+        v-model="userName"
+        placeholder="Username"
         required
       />
       <label
@@ -29,14 +30,17 @@
         id="signinPassword"
         type="password"
         name="password"
+        v-model="pass"
         placeholder="Password"
         required
       />
+      <!-- <NuxtLink :to="{'/': res.value}"> -->
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
       >
-        <NuxtLink to="/cart">login</NuxtLink>
-      </button>
+          login
+        </button>
+        <!-- </NuxtLink> -->
     </form>
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p>
@@ -50,12 +54,50 @@
 </template>
 
 <script setup>
+
+let userName = ref("");
+let pass = ref("");
+let res = ref('');
+let resPending = ref('');
+
+let formBody = reactive({
+  username: "",
+  password: "",
+});
+
 definePageMeta({
   layout: "accounts",
 });
+
+const submitForm = () => {
+  Object.assign(formBody, {
+    username: userName.value,
+    password: pass.value,
+  });
+
+  console.log("the body object: ", JSON.stringify(formBody));
+  let theBody = JSON.stringify(formBody);
+  console.log("sign in: ", theBody);
+
+  const { data, pending, error, refresh } = useSigning(theBody, 'auth/login', 'post', true);
+
+  res.value = data;
+  resPending = pending;
+
+  console.log("token: ", data.value);
+  if (data.value == null) { 
+    return;
+  } else {
+    const router = useRouter();
+    router.back();
+  }
+
+
+};
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .formsWrapper {
   margin: 8rem auto;
   width: 320px;

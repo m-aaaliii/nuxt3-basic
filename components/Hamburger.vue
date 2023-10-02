@@ -26,7 +26,7 @@
         <!-- Mobile menu items -->
         <li>
           <NuxtLink
-            to="/index"
+            to="/"
             class="block p-0 m-0 text-white opacity-50 list-none"
             >Home</NuxtLink
           >

@@ -120,20 +120,15 @@ const submitForm = () => {
   let body = JSON.stringify(formBody);
 
 
-let baseUrl = "https://fakestoreapi.com";
-const { data, pending, error, refresh } = useFetch(`${baseUrl}/users`, {
-  method: "post",
-  body: body,
-});
+  const { data, pending, error, refresh } = useSigning(body, 'users', 'post');
 
-res.value = data;
-resPending = pending;
+  res.value = data;
+  resPending = pending;
 
-console.log(data)
+  console.log(data)
 
 };
 
-// const { data, pending, error, refresh } = useSignup(JSON.stringify(formBody));
 </script>
 
 <style scoped lang="scss">
