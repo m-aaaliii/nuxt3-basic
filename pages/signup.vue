@@ -5,7 +5,7 @@
     >
       sign up
     </h1>
-    <form>
+    <form @submit.prevent="submitForm">
       <label
         for="firstName"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -16,6 +16,7 @@
         id="firstName"
         type="name"
         name="firstName"
+        v-model="fName"
         placeholder="First Name"
         required
       />
@@ -29,6 +30,7 @@
         id="lastName"
         type="name"
         name="lastName"
+        v-model="lName"
         placeholder="Last Name"
         required
       />
@@ -42,6 +44,7 @@
         id="signupEmail"
         type="email"
         name="email"
+        v-model="emailAdd"
         placeholder="Email Address"
         required
       />
@@ -55,15 +58,25 @@
         id="signupPassword"
         type="password"
         name="password"
+        v-model="pass"
         placeholder="Password"
         required
       />
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
       >
-        <NuxtLink to="/login">signup</NuxtLink>
+        signup
+        <!-- <NuxtLink to="/login">signup</NuxtLink> -->
       </button>
     </form>
+
+    <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
+      <p v-if="pending" class="text-center">Loading...</p>
+      <h3 v-else-if="res" class="text-center text-[#88C8BC] font-[700] text-[18px]">
+        Sign Up is Successful!
+      </h3>
+    </div>
+
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p>
         Already have an account?
@@ -76,12 +89,54 @@
 </template>
 
 <script setup>
+let fName = ref("");
+let lName = ref("");
+let emailAdd = ref("");
+let pass = ref("");
+
 definePageMeta({
   layout: "signup",
 });
+
+let formBody = reactive({
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+});
+
+let res = ref('');
+let resPending = ref('');
+
+const submitForm = () => {
+  Object.assign(formBody, {
+    firstName: fName.value,
+    lastName: lName.value,
+    email: emailAdd.value,
+    password: pass.value,
+  });
+
+  console.log("the body object: ", JSON.stringify(formBody));
+  let body = JSON.stringify(formBody);
+
+
+let baseUrl = "https://fakestoreapi.com";
+const { data, pending, error, refresh } = useFetch(`${baseUrl}/users`, {
+  method: "post",
+  body: body,
+});
+
+res.value = data;
+resPending = pending;
+
+console.log(data)
+
+};
+
+// const { data, pending, error, refresh } = useSignup(JSON.stringify(formBody));
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .formsWrapper {
   margin: 8rem auto;
   width: 320px;
