@@ -12,7 +12,7 @@
         >Email</label
       >
       <input
-                class="font-[montserrat] font-[300]"
+        class="font-[montserrat] font-[300]"
         id="signinEmail"
         type="email"
         name="email"
@@ -25,7 +25,7 @@
         >Password</label
       >
       <input
-                class="font-[montserrat] font-[300]"
+        class="font-[montserrat] font-[300]"
         id="signinPassword"
         type="password"
         name="password"
@@ -51,7 +51,7 @@
 
 <script setup>
 definePageMeta({
-  layout: "login",
+  layout: "accounts",
 });
 </script>
 

@@ -95,7 +95,7 @@ let emailAdd = ref("");
 let pass = ref("");
 
 definePageMeta({
-  layout: "signup",
+  layout: "accounts",
 });
 
 let formBody = reactive({
