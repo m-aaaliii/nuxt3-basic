@@ -77,7 +77,7 @@
 
 <script setup>
 definePageMeta({
-  layout: "signup",
+  layout: "accounts",
 });
 </script>
 
