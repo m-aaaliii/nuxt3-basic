@@ -1,23 +1,15 @@
 <template>
-  <div class="container mx-auto px-[15px]">
-    <div
-      class="border border-grey-300 w-[100px] h-[100px] flex justify-center items-center hover:bg-black hover:text-white"
-    >
-      cart page
-    </div>
-    <div class="flex justify-center">
+  <div class="mb-[6em]">
+    <cartTable />
+  </div>
+  <div class="container mx-auto flex justify-end pb-[7rem]">
+    <NuxtLink to="/checkout" class="text-right">
       <button
-        class="border border-grey-300 w-[100px] h-[50px] flex justify-center items-center hover:bg-black hover:text-white"
+        class="cursor-pointer border-transparent bg-[#F2F2F2] py-[6px] px-[24px] rounded-5 text-[14px] font-normal"
       >
-        <NuxtLink to="/checkout">CHECKOUT</NuxtLink>
+        checkout
       </button>
-    </div>
+    </NuxtLink>
   </div>
 </template>
-
-<script setup>
-const availableCart = useAvailableCart();
-
-</script>
-
-<style scoped></style>
+<script setup></script>

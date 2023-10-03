@@ -43,6 +43,7 @@
 <script setup>
 const { category } = useRoute().params;
 console.log(category, " type of the cat");
+
 </script>
 
 <style scoped lang="scss">
