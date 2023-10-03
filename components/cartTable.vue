@@ -1,274 +1,114 @@
 <template>
   <div
-    class="cartHeader row g-0 bg-[#f0f0f0] p-[1rem] mb-[1rem] rounded-[30px]"
+    class="container mx-auto flex gap-0 bg-[#f0f0f0] p-[1rem] mb-[1rem] rounded-[30px] mt-[100px]"
   >
-    <div class="col-6 cartHeading uppercase">product details</div>
-    <div class="col cartHeading uppercase">price</div>
-    <div class="col cartHeading uppercase">quantity</div>
-    <div class="col cartHeading uppercase">total</div>
-    <div class="col cartHeading uppercase">remove</div>
+    <div class="w-[75%] pl-[30px] text-left uppercase">product details</div>
+    <div class="w-1/4 text-center uppercase">price</div>
+    <div class="w-1/4 text-center uppercase">quantity</div>
+    <div class="w-1/4 text-center uppercase">total</div>
+    <div class="w-1/4 text-center uppercase">remove</div>
   </div>
-
-  <div>
-    <!-- <div>
-      <div class="cartCardContainer border-bottom">
-        <div class="row g-0 justify-content-center align-items-center">
-          <div class="col-auto cartIsEmpty text-danger">
+  <div class="container mx-auto block">
+    <div v-if="isEmpty">
+      <div class="p-[1rem] border-bottom">
+        <div class="flex g-0 justify-center items-center">
+          <div
+            class="flex-grow-0 flex-shrink-0 text-[20px] font-[400] mb-[40px] font-[Rokkit] text-red-500"
+          >
             <h2>
-              <span><Icon icon="fluent:warning-24-filled" /> </span>Cart is
+              <span><Icon name="fluent:warning-24-filled" /> </span>Cart is
               Empty
             </h2>
           </div>
         </div>
       </div>
-    </div> -->
-    <div>
+    </div>
+    <div v-else>
       <div
-        class="cartCardContainer border-bottom"
-        v-for="(product, index) in getCart"
-        :key="product.title"
-        :id="product.id"
+        class="p-[1rem] border-bottom"
+        v-for="(product, index) in persons"
+        :key="index"
         ref="cartItem"
       >
-        <div class="g-0 align-items-center row">
-          <div class="col-6">
-            <div class="row g-0 align-items-center">
-              <div class="col-auto">
-                <div class="cartThumb">
-                  <img :src="product.img" alt="product" />
+        <div class="g-0 items-center flex">
+          <div class="w-[75%] pl-[30px] text-left uppercase">
+            <div class="flex gap-0 items-center">
+              <div class="flex-grow-0 flex-shrink-0">
+                <div class="w-[100%] h-[100px] object-contain rounded-[4px]">
+                  <img
+                    :src="product.cardImage"
+                    alt="product"
+                    class="w-[90px] h-[100px]"
+                  />
                 </div>
               </div>
-              <div class="col-auto productTitle">
-                <span>Product Name</span>
+              <div class="flex-grow-0 flex-shrink-0 text=[#000] font-[400]">
+                <span>{{ product.title }}</span>
               </div>
             </div>
           </div>
-          <div class="col price">
-            <p>$68.00</p>
+          <div class="price w-1/4 text-center uppercase">
+            <p class="text-[#595959] leading-[1.8] text-[14px] font-[300]">
+              {{ product.price }}
+            </p>
           </div>
-          <div class="col cartQuantity">
+          <div class="w-1/2 w-1/4 text-center uppercase">
             <input
+              class="text-[#595959] leading-[1.8] text-[14px] font-[300] text-center"
               min="1"
               type="number"
+              :value="1"
               name="productQuantity"
-              :value="product.count"
               disabled
             />
           </div>
-          <div class="col total">
-            <p>$120.00</p>
+          <div class="total w-1/4 text-center uppercase">
+            <p class="text-[#595959] leading-[1.8] text-[14px] font-[300]">
+              //
+            </p>
           </div>
-          <div class="col">
-            <button class="removeFromCart" @click="handleClick(index)">
-              <Icon name="ep:close" />
+          <div class="w-1/4 text-center">
+            <button
+              class="text-[#595959] border-0w-[20px] h-[20px] text-center bg-[#f2f2f2] uppercase rounded-[2px] py-[0] px-[4px] ml-[30px]"
+            >
+              <Icon
+                name="cil:x"
+                class="text-[#999999] h-[12px] w-[12px] mb-[7px]"
+              />
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="row row-pb-lg pb-[6em] flex">
-    <div class="col-md-12">
-      <div class="product-name d-flex">
-        <div class="one-forth text-left px-4">
-          <span>Product Details</span>
-        </div>
-        <div class="one-eight text-center">
-          <span>Price</span>
-        </div>
-        <div class="one-eight text-center">
-          <span>Quantity</span>
-        </div>
-        <div class="one-eight text-center">
-          <span>Total</span>
-        </div>
-        <div class="one-eight text-center px-4">
-          <span>Remove</span>
-        </div>
-      </div>
-      <div class="product-cart d-flex">
-        <div class="one-forth">
-          <div
-            class="product-img"
-            style="background-image: url(images/item-6.jpg)"
-          ></div>
-          <div class="display-tc">
-            <h3>Product Name</h3>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$68.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <input
-              type="text"
-              id="quantity"
-              name="quantity"
-              class="form-control input-number text-center"
-              value="1"
-              min="1"
-              max="100"
-            />
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$120.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <a href="#" class="closed"></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-cart d-flex">
-        <div class="one-forth">
-          <div
-            class="product-img"
-            style="background-image: url(images/item-7.jpg)"
-          ></div>
-          <div class="display-tc">
-            <h3>Product Name</h3>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$68.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <form action="#">
-              <input
-                type="text"
-                name="quantity"
-                class="form-control input-number text-center"
-                value="1"
-                min="1"
-                max="100"
-              />
-            </form>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$120.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <a href="#" class="closed"></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-cart d-flex">
-        <div class="one-forth">
-          <div
-            class="product-img"
-            style="background-image: url(images/item-8.jpg)"
-          ></div>
-          <div class="display-tc">
-            <h3>Product Name</h3>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$68.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <input
-              type="text"
-              id="quantity"
-              name="quantity"
-              class="form-control input-number text-center"
-              value="1"
-              min="1"
-              max="100"
-            />
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <span class="price">$120.00</span>
-          </div>
-        </div>
-        <div class="one-eight text-center">
-          <div class="display-tc">
-            <a href="#" class="closed"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="py-4 mb-4 flex"> -->
-  <!-- Header -->
-  <!-- <section class="shrink-0 grow-0 basis-0">
-      <div class="w-[85px] h-[85px] rounded-[50%]">
-        <img
-          :src="thumb"
-          alt="thumbnail"
-          class="w-[100%] h-[100%] rounded-[50%]"
-        />
-      </div>
-    </section> -->
-  <!-- Body -->
-  <!-- <section class="grid grid-cols-1 w-full">
-      <div class="pl-3 md:px-3">
-        <div class="flex">
-          <div class="shrink-0 grow basis-1/2">
-            <p
-              class="text-[#000] font-[rokkitt] leading-[1.8] text-[14px] font-[400] uppercase"
-            >
-              {{ name }}
-            </p>
-          </div>
-          <div class="shrink-0 grow-0 basis-1/2 text-right">
-            <p class="text-[#b3b3b3] text-[13px] uppercase font-[rokkitt]">
-              {{ date }}
-            </p>
-          </div>
-        </div>
-        <div class="shrink-0 grow-0 basis-0 mt-2 md:mt-3">
-          <div class="flex justify-between items-center">
-            <div class="flex">
-              <div class="" v-for="star in actualRating" :key="`rate${star}1`">
-                <icon name="bi:star-fill" />
-              </div>
-              <div
-                class="flex pt-[4px]"
-                v-for="unrated in newRating"
-                :key="'rating' + unrated"
-              >
-                <icon name="bi:star" />
-              </div>
-            </div>
-            <div class="">
-              <button
-                class="bg-[#f0f0f0] px-[12px] py-[4px] rounded-[5px] hover:bg-[#616161] hover:text-white"
-              >
-                <icon name="bi:reply-fill" class="h-[20px] w-[20px]" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="shrink-0 grow-0 basis-0 mt-2 md:mt-3">
-          <p>
-            When she reached the first hills of the Italic Mountains, she had a
-            last view back on the skyline of her hometown Bookmarksgrov
-          </p>
-        </div>
-      </div>
-    </section> -->
-  <!-- Footer -->
-  <!-- </div> -->
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  img: String,
+  title: String,
+  price: Number,
+});
+let persons = [
+  {
+    id: 1029,
+    cardImage: "/item-1.jpg",
+    title: "WOMEN'S BOOTS SHOES MACA",
+    price: "$234",
+  },
+  {
+    id: 2938,
+    cardImage: "/item-1.jpg",
+    title: "WOMEN'S BOOTS SHOES MACA",
+    price: "$234",
+  },
+  {
+    id: 3847,
+    cardImage: "/item-1.jpg",
+    title: "WOMEN'S BOOTS SHOES MACA",
+    price: "$234",
+  },
+];
+</script>
 
-<style scoped lang="scss"></style>
+<style></style>
