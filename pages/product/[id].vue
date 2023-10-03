@@ -141,17 +141,16 @@
   </div>
 </template>
 
+
+
 <script setup>
+  
 const count = ref(1);
 let size = ref(7);
 let res = ref('');
-let cartObj = reactive({
-  title: '',
-  image: '',
-  price: '',
-  count: '',
-  totalPrice: ''
-})
+let cartObj = reactive({});
+const { cartProduct } = useNuxtApp();
+
 
 const decrement = () => {
   if (count.value > 1) count.value--;
@@ -170,19 +169,20 @@ try {
   res.value = error;
 }
 
-console.log(count.value)
 const totalprice = computed(() => useTotalPrice(res.value.price, count.value));
 
 const updateCart = () => {
   Object.assign(cartObj, {
+    id: res.value.id,
     title: res.value.title,
     image: res.value.image,
     price: res.value.price,
     count: count.value,
     totalPrice: totalprice.value
   });
+  console.log("updated cart 111: ", cartObj);
+  cartProduct(cartObj)
 
-  console.log("updated cart 111: ", cartObj)
 }
 
 const handleSetSize = (ItemSize) => {

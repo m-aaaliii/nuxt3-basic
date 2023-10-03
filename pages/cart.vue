@@ -1,6 +1,6 @@
 <template>
   <div class="mb-[6em]">
-    <cartTable />
+    <cartTable :cartData="cartData" />
   </div>
   <div class="container mx-auto flex justify-end pb-[7rem]">
     <NuxtLink to="/checkout" class="text-right">
@@ -12,4 +12,11 @@
     </NuxtLink>
   </div>
 </template>
-<script setup></script>
+<script setup>
+let cartData = ref('');
+const cart = useCart();
+cartData = cart.value;
+console.log(cartData, "all items")
+// console.log(cartData[0].title, "first item");
+
+</script>

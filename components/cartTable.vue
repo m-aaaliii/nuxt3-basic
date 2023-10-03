@@ -26,7 +26,7 @@
     <div v-else>
       <div
         class="p-[1rem] border-bottom"
-        v-for="(product, index) in persons"
+        v-for="(product, index) in cartData"
         :key="index"
         ref="cartItem"
       >
@@ -36,7 +36,7 @@
               <div class="flex-grow-0 flex-shrink-0">
                 <div class="w-[100%] h-[100px] object-contain rounded-[4px]">
                   <img
-                    :src="product.cardImage"
+                    :src="product.image"
                     alt="product"
                     class="w-[90px] h-[100px]"
                   />
@@ -84,12 +84,23 @@
 </template>
 
 <script setup>
+
+let isEmpty = ref(false);
+// const {}
+
 const props = defineProps({
-  img: String,
-  title: String,
-  price: Number,
+  cartData: Array
 });
-let persons = [
+
+if (props.cartData.length === 0) {
+  isEmpty.value = true;
+} 
+
+</script>
+
+<style></style>
+
+<!-- let persons = [
   {
     id: 1029,
     cardImage: "/item-1.jpg",
@@ -108,7 +119,4 @@ let persons = [
     title: "WOMEN'S BOOTS SHOES MACA",
     price: "$234",
   },
-];
-</script>
-
-<style></style>
+]; -->
