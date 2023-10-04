@@ -13,7 +13,7 @@
         <h2
           class="mb-[8px] text-[18px] leading-[1.5] text-[#000] font-[400] font-rokkitt text-center"
         >
-          {{title}}
+          {{truncateString(title, 22)}}
         </h2>
       </a>
       <span
@@ -34,6 +34,8 @@ const props = defineProps({
   price: Number,
 
 })
+
+const truncateString = useTruncate();
 
 </script>
 

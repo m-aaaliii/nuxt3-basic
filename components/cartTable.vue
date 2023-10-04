@@ -1,15 +1,15 @@
 <template>
   <div
-    class="container mx-auto flex gap-0 bg-[#f0f0f0] p-[1rem] mb-[1rem] rounded-[30px] mt-[100px]"
+    class="container mx-auto flex gap-0 bg-[#f0f0f0] p-[1rem] mb-[1rem] rounded-[30px] mt-[100px] font-[500] font-[rokkitt] text-[15px] text-[#333] uppercase tracking-[0.5px]"
   >
-    <div class="w-[75%] pl-[30px] text-left uppercase">product details</div>
-    <div class="w-1/4 text-center uppercase">price</div>
-    <div class="w-1/4 text-center uppercase">quantity</div>
-    <div class="w-1/4 text-center uppercase">total</div>
-    <div class="w-1/4 text-center uppercase">remove</div>
+    <div class="w-[75%] pl-[30px] text-left">product details</div>
+    <div class="w-1/4 text-center">price</div>
+    <div class="w-1/4 text-center">quantity</div>
+    <div class="w-1/4 text-center">total</div>
+    <div class="w-1/4 text-center">remove</div>
   </div>
   <div class="container mx-auto block">
-    <div v-if="isEmpty">
+    <div v-if="isDisabled">
       <div class="p-[1rem] border-bottom">
         <div class="flex g-0 justify-center items-center">
           <div
@@ -30,9 +30,9 @@
         :key="index"
         ref="cartItem"
       >
-        <div class="g-0 items-center flex">
+        <div class="g-0 items-center flex font-[rokkitt]">
           <div class="w-[75%] pl-[30px] text-left uppercase">
-            <div class="flex gap-0 items-center">
+            <div class="flex gap-[12px] items-center">
               <div class="flex-grow-0 flex-shrink-0">
                 <div class="w-[100%] h-[100px] object-contain rounded-[4px]">
                   <img
@@ -42,8 +42,9 @@
                   />
                 </div>
               </div>
-              <div class="flex-grow-0 flex-shrink-0 text=[#000] font-[400]">
-                <span>{{ product.title }}</span>
+              <div class="flex-grow flex-shrink-0 text=[#000] font-[300] relative text-[14px]">
+                <span class="cursor-pointer" @mouseover="handleShowTooltip" @mouseleave="handleShowTooltip">{{ truncateString(product.title, 16) }}</span>
+                <p v-show="showTooltip" class="flex flex-nowrap w-full absolute top-[28px] text-[13px] bg-amber-100 py-[8px] px-[20px] capitalize text-[#333] rounded-[5px]">{{ product.title }}</p>
               </div>
             </div>
           </div>
@@ -53,23 +54,18 @@
             </p>
           </div>
           <div class="w-1/2 w-1/4 text-center uppercase">
-            <input
-              class="text-[#595959] leading-[1.8] text-[14px] font-[300] text-center"
-              min="1"
-              type="number"
-              :value="1"
-              name="productQuantity"
-              disabled
-            />
+            <p class="text-[#595959] leading-[1.8] text-[14px] font-[300]">
+              {{ product.count }}
+            </p>
           </div>
           <div class="total w-1/4 text-center uppercase">
             <p class="text-[#595959] leading-[1.8] text-[14px] font-[300]">
-              //
+              {{ product.totalPrice }}
             </p>
           </div>
           <div class="w-1/4 text-center">
             <button
-              class="text-[#595959] border-0w-[20px] h-[20px] text-center bg-[#f2f2f2] uppercase rounded-[2px] py-[0] px-[4px] ml-[30px]"
+              class="text-[#595959] border-0w-[20px] h-[20px] text-center bg-[#f2f2f2] uppercase rounded-[2px] py-[0] px-[4px] ml-[30px]" @click="handleRemove(index)"
             >
               <Icon
                 name="cil:x"
@@ -85,38 +81,29 @@
 
 <script setup>
 
+const { removeProduct } = useNuxtApp();
+const truncateString = useTruncate();
+let showTooltip = ref(false);
+
 let isEmpty = ref(false);
-// const {}
 
 const props = defineProps({
-  cartData: Array
+  cartData: Array,
+  isDisabled: Boolean
 });
 
 if (props.cartData.length === 0) {
   isEmpty.value = true;
-} 
+}
+
+const handleRemove = (i) => {
+  removeProduct(i)
+}
+
+const handleShowTooltip = () => showTooltip.value = !showTooltip.value;
+
+console.log(showTooltip.value)
 
 </script>
 
-<style></style>
-
-<!-- let persons = [
-  {
-    id: 1029,
-    cardImage: "/item-1.jpg",
-    title: "WOMEN'S BOOTS SHOES MACA",
-    price: "$234",
-  },
-  {
-    id: 2938,
-    cardImage: "/item-1.jpg",
-    title: "WOMEN'S BOOTS SHOES MACA",
-    price: "$234",
-  },
-  {
-    id: 3847,
-    cardImage: "/item-1.jpg",
-    title: "WOMEN'S BOOTS SHOES MACA",
-    price: "$234",
-  },
-]; -->
+<style lang="scss"></style>

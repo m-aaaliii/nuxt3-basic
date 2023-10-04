@@ -57,8 +57,10 @@
 
 let userName = ref("");
 let pass = ref("");
-let res = ref('');
 let resPending = ref('');
+const user = useCookie('userJWT', {
+  default: () => null
+});
 
 let formBody = reactive({
   username: "",
@@ -75,17 +77,19 @@ const submitForm = () => {
     password: pass.value,
   });
 
-  console.log("the body object: ", JSON.stringify(formBody));
   let theBody = JSON.stringify(formBody);
-  console.log("sign in: ", theBody);
-
   const { data, pending, error, refresh } = useSigning(theBody, 'auth/login', 'post', true);
 
-  res.value = data;
-  resPending = pending;
+  try {
+    resPending = pending;
+    user.value = data.value.token;
+    console.log("New Token: ", user.value)
+  } catch (error) {
+    console.log(error, " has happened!")
+  }
+  
 
-  console.log("token: ", data.value);
-  if (data.value == null) { 
+  if (user == null) { 
     return;
   } else {
     const router = useRouter();

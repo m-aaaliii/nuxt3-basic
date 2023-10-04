@@ -1,7 +1,3 @@
-<script setup>
-const showDropdown = ref(false);
-const showDropdown1 = ref(false);
-</script>
 <template>
   <div class="pt-[50px] pr-[0px] pb-[10px] pl-[0px]">
     <div class="container mx-auto pr-[15px] pl-[15px]">
@@ -139,7 +135,10 @@ const showDropdown1 = ref(false);
                   <div
                     class="pointer absolute top-[8px] left-[20px] w-[18px] h-[18px] bg-[#000] rotate-[50deg]"
                   ></div>
-                  <ul
+                  <ul v-if="userToken" class="w-[140px] z-1002 text-white absolute top-[10px] left-0 text-left bg-[#000] p-[20px] rounded-md">
+                    <li class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase cursor-pointer" @click="handleSignOut">Sign Out</li>
+                  </ul>
+                  <ul v-else
                     class="w-[140px] z-1002 text-white absolute top-[10px] left-0 text-left bg-[#000] p-[20px] rounded-md"
                   >
                     <li>
@@ -170,7 +169,7 @@ const showDropdown1 = ref(false);
                 <i class="pr-[5px]">
                   <icon name="bi:cart2" class="w-[17px] h-[17px]" />
                 </i>
-                Cart [0]
+                Cart [{{ count }}]
               </NuxtLink>
             </li>
           </ul>
@@ -179,6 +178,24 @@ const showDropdown1 = ref(false);
     </div>
   </div>
 </template>
+
+
+<script setup>
+
+const showDropdown = ref(false);
+const showDropdown1 = ref(false);
+
+let userToken = useCookie('userJWT');
+let products = useCart();
+
+let count = computed(() => products.value.length);
+
+const handleSignOut = () => userToken.value = null;
+console.log(userToken.value, " signed out")
+
+</script>
+
+
 <style scoped>
 li.color-text a.router-link-exact-active {
   color: #88c8bc;
