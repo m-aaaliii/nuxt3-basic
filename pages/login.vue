@@ -37,15 +37,19 @@
       <!-- <NuxtLink :to="{'/': res.value}"> -->
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
+        @click="handleUser()"
       >
-          login
-        </button>
-        <!-- </NuxtLink> -->
+        login
+      </button>
+      <!-- </NuxtLink> -->
     </form>
 
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p v-if="resPending" class="text-center">Loading...</p>
-      <h3 v-else-if="resError" class="text-center text-red-500 font-[700] text-[16px]">
+      <h3
+        v-else-if="resError"
+        class="text-center text-red-500 font-[700] text-[16px]"
+      >
         Something went wrong!
       </h3>
     </div>
@@ -62,13 +66,12 @@
 </template>
 
 <script setup>
-
 let userName = ref("");
 let pass = ref("");
-let resPending = ref('');
+let resPending = ref("");
 let resError = ref(null);
-const user = useCookie('userJWT', {
-  default: () => null
+const user = useCookie("userJWT", {
+  default: () => null,
 });
 const { decodeName } = useNuxtApp();
 
@@ -88,7 +91,12 @@ const submitForm = async () => {
   });
 
   let theBody = JSON.stringify(formBody);
-  const { data, pending, error, refresh } = await useSigning(theBody, 'auth/login', 'post', true);
+  const { data, pending, error, refresh } = await useSigning(
+    theBody,
+    "auth/login",
+    "post",
+    true
+  );
 
   try {
     resPending = pending;
@@ -97,18 +105,14 @@ const submitForm = async () => {
   } catch {
     resError.value = error;
   }
-  
 
-  if (resError.value !==null && user) { 
+  if (resError.value !== null && user) {
     return;
   } else {
     const router = useRouter();
     router.back();
   }
-
-
 };
-
 </script>
 
 <style scoped lang="scss">
