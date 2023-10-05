@@ -5,18 +5,19 @@
     >
       login
     </h1>
-    <form>
+    <form @submit.prevent="submitForm">
       <label
-        for="signinEmail"
+        for="signinUsername"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
-        >Email</label
+        >Username</label
       >
       <input
-                class="font-[montserrat] font-[300]"
-        id="signinEmail"
-        type="email"
-        name="email"
-        placeholder="Email Address"
+        class="font-[montserrat] font-[300]"
+        id="signinUsername"
+        type="text"
+        name="Username"
+        v-model="userName"
+        placeholder="Username"
         required
       />
       <label
@@ -25,19 +26,34 @@
         >Password</label
       >
       <input
-                class="font-[montserrat] font-[300]"
+        class="font-[montserrat] font-[300]"
         id="signinPassword"
         type="password"
         name="password"
+        v-model="pass"
         placeholder="Password"
         required
       />
+      <!-- <NuxtLink :to="{'/': res.value}"> -->
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
+        @click="handleUser()"
       >
-        <NuxtLink to="/cart">login</NuxtLink>
+        login
       </button>
+      <!-- </NuxtLink> -->
     </form>
+
+    <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
+      <p v-if="resPending" class="text-center">Loading...</p>
+      <h3
+        v-else-if="resError"
+        class="text-center text-red-500 font-[700] text-[16px]"
+      >
+        Something went wrong!
+      </h3>
+    </div>
+
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p>
         Do not have an account?
@@ -50,12 +66,56 @@
 </template>
 
 <script setup>
-definePageMeta({
-  layout: "login",
+let userName = ref("");
+let pass = ref("");
+let resPending = ref("");
+let resError = ref(null);
+const user = useCookie("userJWT", {
+  default: () => null,
 });
+const { decodeName } = useNuxtApp();
+
+let formBody = reactive({
+  username: "",
+  password: "",
+});
+
+definePageMeta({
+  layout: "accounts",
+});
+
+const submitForm = async () => {
+  Object.assign(formBody, {
+    username: userName.value,
+    password: pass.value,
+  });
+
+  let theBody = JSON.stringify(formBody);
+  const { data, pending, error, refresh } = await useSigning(
+    theBody,
+    "auth/login",
+    "post",
+    true
+  );
+
+  try {
+    resPending = pending;
+    user.value = data.value.token;
+    decodeName(user.value);
+  } catch {
+    resError.value = error;
+  }
+
+  if (resError.value !== null && user) {
+    return;
+  } else {
+    const router = useRouter();
+    router.back();
+  }
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .formsWrapper {
   margin: 8rem auto;
   width: 320px;

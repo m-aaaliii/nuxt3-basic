@@ -1,9 +1,3 @@
-<script setup>
-import { ref } from "vue";
-const showDropdown = ref(false);
-const showDropdown1 = ref(false);
-const name = "FaSearch";
-</script>
 <template>
   <div class="pt-[50px] pr-[0px] pb-[10px] pl-[0px]">
     <div class="container mx-auto pr-[15px] pl-[15px]">
@@ -33,18 +27,7 @@ const name = "FaSearch";
                 class="text-center h-[40px] w-[40px] absolute top-0 right-[-4px] p-0 bg-[#88c8bc] border border-solid border-[#88c8bc] cursor-pointer text-white mr-[4px] mb-[4px] text-[14px] font-normal rounded-full"
                 type="submit"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 1664 1664"
-                  class="font-normal normal-case leading-none relative left-[12px]"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
-                  ></path>
-                </svg>
+                <icon name="fa:search" class="text-white w-[1em] h-[2em]" />
               </button>
             </div>
           </form>
@@ -135,7 +118,7 @@ const name = "FaSearch";
               >
             </li>
           </ul>
-          <ul class="flex flex-wrap items-center">
+          <ul class="flex flex-wrap items-center pt-[9px]">
             <li
               class="relative p-[0] m-[0] float-right list-none inline font-normal font-rokkitt uppercase text-[15px] tracking-wider z-[10] mt-[4px]"
             >
@@ -144,7 +127,13 @@ const name = "FaSearch";
                 @mouseleave="showDropdown1 = false"
                 to=""
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
-                >account
+                >
+                  <span v-if="username" class="text-[11px]">
+                    Welcome, <span class="text-emerald-400 text-[16px]">{{ username }}</span>
+                  </span>
+                  <span class="" v-else>
+                    account
+                  </span>
                 <div
                   v-if="showDropdown1"
                   class="absolute mt-2 bg-white border border-gray-300 left-[0] top-[12px]"
@@ -153,6 +142,18 @@ const name = "FaSearch";
                     class="pointer absolute top-[8px] left-[20px] w-[18px] h-[18px] bg-[#000] rotate-[50deg]"
                   ></div>
                   <ul
+                    v-if="userToken"
+                    class="w-[140px] z-1002 text-white absolute top-[10px] left-0 text-left bg-[#000] p-[20px] rounded-md"
+                  >
+                    <li
+                      class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase cursor-pointer"
+                      @click="handleSignOut(), handleCart()"
+                    >
+                      Sign Out
+                    </li>
+                  </ul>
+                  <ul
+                    v-else
                     class="w-[140px] z-1002 text-white absolute top-[10px] left-0 text-left bg-[#000] p-[20px] rounded-md"
                   >
                     <li>
@@ -166,6 +167,7 @@ const name = "FaSearch";
                       <NuxtLink
                         to="/login"
                         class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
+                        
                         >login</NuxtLink
                       >
                     </li>
@@ -180,20 +182,10 @@ const name = "FaSearch";
                 to="/cart"
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black flex"
               >
-                <i class="pr-[8px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="17"
-                    height="17"
-                    viewBox="0 0 1024 1024"
-                  >
-                    <path
-                      fill="#000"
-                      d="M1015.66 284a31.82 31.82 0 0 0-25.998-13.502H310.526l-51.408-177.28c-20.16-69.808-68.065-77.344-87.713-77.344H34.333c-17.569 0-31.777 14.224-31.777 31.776S16.78 79.425 34.332 79.425h137.056c4.336 0 17.568 0 26.593 31.184l176.848 649.936c3.84 13.712 16.336 23.183 30.591 23.183h431.968c13.409 0 25.376-8.4 29.905-21.024l152.256-449.68c3.504-9.744 2.048-20.592-3.888-29.024zM815.026 720.194H429.539L328.387 334.066h616.096zM752.003 848.13c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80zm-288 0c-44.192 0-80 35.808-80 80s35.808 80 80 80s80-35.808 80-80s-35.808-80-80-80z"
-                    />
-                  </svg>
+                <i class="pr-[5px]">
+                  <icon name="bi:cart2" class="w-[17px] h-[17px]" />
                 </i>
-                Cart [0]
+                Cart [{{ count }}]
               </NuxtLink>
             </li>
           </ul>
@@ -202,6 +194,38 @@ const name = "FaSearch";
     </div>
   </div>
 </template>
+
+<script setup>
+const showDropdown = ref(false);
+const showDropdown1 = ref(false);
+let username = ref(null);
+
+let userToken = useCookie("userJWT");
+let products = useCart();
+
+if (userToken.value) { 
+  console.log("TOKEN >>> ", userToken.value)    // Actual Token value
+  const decodedUser = useUserDetails();
+  console.log(decodedUser.value, " is the user ....")
+  username.value = decodedUser.value;
+}
+
+let count = computed(() => products.value.length);
+
+const handleSignOut = () => {
+  userToken.value = null;
+  username.value = null;
+};
+
+console.log(userToken.value, " signed out");
+const clearCart = useClearCart();
+const handleCart = () => {
+  clearCart();
+  console.log("runs");
+};
+
+</script>
+
 <style scoped>
 li.color-text a.router-link-exact-active {
   color: #88c8bc;

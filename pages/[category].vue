@@ -8,7 +8,6 @@
           class="uppercase text-[#000] text-[40px] font-[400] font-[rokkitt] leading-[1.5]"
         >
           {{ category }}
-          <!-- Men -->
         </h2>
       </div>
       <div
@@ -44,13 +43,10 @@
 <script setup>
 const { category } = useRoute().params;
 console.log(category, " type of the cat");
-// const { data } = await useFetch(
-//   `https://fakestoreapi.com/products/category/${category}`
-// );
-// console.log("some data is received: ", data.value[0].category);
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .categoryHeader {
   min-height: 300px;
 }

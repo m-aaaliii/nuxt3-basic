@@ -6,12 +6,12 @@
       </h2>
     </div>
     <div
-      class="grid grid-cols-4 gap-[14px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1"
+      class="grid grid-cols-4 gap-[16px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1"
     >
       <div
         v-for="(p, index) in data"
         :key="index"
-        class="px-[15px] Lap-only:flex Tab-only:pb-[20px] mobile-only:mobile-only:p-[9px]"
+        class="Lap-only:flex"
       >
         <NuxtLink :to="`/product/${p.id}`">
           <card :img="p.image" :title="p.title" :price="p.price" />

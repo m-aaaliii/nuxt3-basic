@@ -7,17 +7,22 @@
   <div class="flex justify-center">
     <button
       class="border border-grey-300 w-[100px] h-[50px] flex justify-center items-center hover:bg-black hover:text-white"
+      @click="handleCart()"
     >
-      <NuxtLink to="/orderComplete">SUCCESS</NuxtLink>
+      <NuxtLink to="/orderComplete">CONFIRM ORDER</NuxtLink>
     </button>
   </div>
 </template>
 
 <script setup>
-const isAuthenticated = ref(false);
 definePageMeta({
-  middleware: ["auth"],
+  middleware: "auth",
 });
+const clearCart = useClearCart();
+const handleCart = () => {
+  clearCart();
+  console.log("runs");
+};
 </script>
 
 <style scoped></style>

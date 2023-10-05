@@ -1,6 +1,12 @@
 import { resolve } from "path";
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
+  },
   alias: {
     "@": resolve(__dirname, "/"),
   },
@@ -11,5 +17,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: [],
+  modules: ["nuxt-icon"],
 });

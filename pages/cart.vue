@@ -1,18 +1,32 @@
 <template>
-  <div
-    class="border border-grey-300 w-[100px] h-[100px] flex justify-center items-center hover:bg-black hover:text-white"
-  >
-    cart page
+  <div class="mb-[6em]">
+    <cartTable :cartData="cartData" :isDisabled="disabledCheck" />
   </div>
-  <div class="flex justify-center">
+  <div class="container mx-auto flex justify-end pb-[7rem]">
     <button
-      class="border border-grey-300 w-[100px] h-[50px] flex justify-center items-center hover:bg-black hover:text-white"
+      class="cursor-pointer border-transparent bg-[#F2F2F2] py-[10px] px-[20px] rounded-[6px] text-[14px] font-normal uppercase font-[300] text-[#333] tracking-[1px] hover:bg-[#616161] hover:text-white"
+      :disabled="disabledCheck.value"
+      @click="handleCheckout"
     >
-      <NuxtLink to="/checkout">CHECKOUT</NuxtLink>
+      checkout
     </button>
   </div>
 </template>
+<script setup>
+let disableBtn = ref(true);
+let cartData = ref("");
+const router = useRouter();
 
-<script setup></script>
+const cart = useCart();
+if (cart.value.length !== 0) {
+  cartData = cart.value;
+  disableBtn.value = false;
+}
 
-<style scoped></style>
+console.log(cartData, "all items");
+let disabledCheck = computed(() => (cart.value.length !== 0 ? false : true));
+console.log(disabledCheck.value, " btn disabled");
+
+const handleCheckout = () =>
+  disabledCheck.value === false && router.push({ path: "/checkout" });
+</script>
