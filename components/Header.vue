@@ -127,7 +127,13 @@
                 @mouseleave="showDropdown1 = false"
                 to=""
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
-                >account
+                >
+                  <span v-if="username" class="text-[12px]">
+                    Welcome, <span class="text-emerald-400 text-[16px]">{{ username }}</span>
+                  </span>
+                  <span class="" v-else>
+                    account
+                  </span>
                 <div
                   v-if="showDropdown1"
                   class="absolute mt-2 bg-white border border-gray-300 left-[0] top-[12px]"
@@ -184,13 +190,25 @@
 
 const showDropdown = ref(false);
 const showDropdown1 = ref(false);
+let username = ref(null);
 
 let userToken = useCookie('userJWT');
 let products = useCart();
 
+
+
+if (userToken.value) { 
+  console.log("TOKEN >>> ", userToken.value.token)    // Actual Token value
+  const { payload } = useDecode();
+  username.value = payload.user;
+}
+
 let count = computed(() => products.value.length);
 
-const handleSignOut = () => userToken.value = null;
+const handleSignOut = () => {
+  userToken.value = null
+  username.value = null;
+};
 console.log(userToken.value, " signed out")
 
 </script>

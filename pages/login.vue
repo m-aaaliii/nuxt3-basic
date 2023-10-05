@@ -42,6 +42,14 @@
         </button>
         <!-- </NuxtLink> -->
     </form>
+
+    <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
+      <p v-if="resPending" class="text-center">Loading...</p>
+      <h3 v-else-if="resError" class="text-center text-red-500 font-[700] text-[16px]">
+        Something went wrong!
+      </h3>
+    </div>
+
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p>
         Do not have an account?
@@ -58,6 +66,7 @@
 let userName = ref("");
 let pass = ref("");
 let resPending = ref('');
+let resError = ref(null);
 const user = useCookie('userJWT', {
   default: () => null
 });
@@ -71,25 +80,26 @@ definePageMeta({
   layout: "accounts",
 });
 
-const submitForm = () => {
+const submitForm = async () => {
   Object.assign(formBody, {
     username: userName.value,
     password: pass.value,
   });
 
   let theBody = JSON.stringify(formBody);
-  const { data, pending, error, refresh } = useSigning(theBody, 'auth/login', 'post', true);
+  const { data, pending, error, refresh } = await useSigning(theBody, 'auth/login', 'post', true);
 
   try {
     resPending = pending;
     user.value = data.value.token;
     console.log("New Token: ", user.value)
-  } catch (error) {
-    console.log(error, " has happened!")
+  } catch {
+    console.log(error, " has happened!");
+    resError.value = error;
   }
   
 
-  if (user == null) { 
+  if (resError.value !==null && user) { 
     return;
   } else {
     const router = useRouter();
