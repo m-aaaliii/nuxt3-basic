@@ -113,12 +113,6 @@ const submitForm = async () => {
     router.back();
   }
 };
-
-const mergeCarts = useUserCart();
-const handleUser = () => {
-  mergeCarts();
-  console.log("runs");
-};
 </script>
 
 <style scoped lang="scss">

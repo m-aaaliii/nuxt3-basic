@@ -1,6 +1,6 @@
 export const useClearCart = () => {
   const products = useCart();
-  const cookiesCart = useCookie("Cart");
+  const cookiesCart = useCookie("guestCart");
 
   const clearCart = () => {
     products.value = [];
