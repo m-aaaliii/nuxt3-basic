@@ -42,9 +42,21 @@
                   />
                 </div>
               </div>
-              <div class="flex-grow flex-shrink-0 text=[#000] font-[300] relative text-[14px]">
-                <span class="cursor-pointer" @mouseover="handleShowTooltip" @mouseleave="handleShowTooltip">{{ truncateString(product.title, 16) }}</span>
-                <p v-show="showTooltip" class="flex flex-nowrap w-full absolute top-[28px] text-[13px] bg-amber-100 py-[8px] px-[20px] capitalize text-[#333] rounded-[5px]">{{ product.title }}</p>
+              <div
+                class="flex-grow flex-shrink-0 text=[#000] font-[300] relative text-[14px]"
+              >
+                <span
+                  class="cursor-pointer"
+                  @mouseover="handleShowTooltip"
+                  @mouseleave="handleShowTooltip"
+                  >{{ truncateString(product.title, 16) }}</span
+                >
+                <p
+                  v-show="showTooltip"
+                  class="flex flex-nowrap w-full absolute top-[28px] text-[13px] bg-amber-100 py-[8px] px-[20px] capitalize text-[#333] rounded-[5px]"
+                >
+                  {{ product.title }}
+                </p>
               </div>
             </div>
           </div>
@@ -65,7 +77,8 @@
           </div>
           <div class="w-1/4 text-center">
             <button
-              class="text-[#595959] border-0w-[20px] h-[20px] text-center bg-[#f2f2f2] uppercase rounded-[2px] py-[0] px-[4px] ml-[30px]" @click="handleRemove(index)"
+              class="text-[#595959] border-0w-[20px] h-[20px] text-center bg-[#f2f2f2] uppercase rounded-[2px] py-[0] px-[4px] ml-[30px]"
+              @click="handleRemove(index)"
             >
               <Icon
                 name="cil:x"
@@ -80,8 +93,8 @@
 </template>
 
 <script setup>
-
 const { removeProduct } = useNuxtApp();
+
 const truncateString = useTruncate();
 let showTooltip = ref(false);
 
@@ -89,7 +102,7 @@ let isEmpty = ref(false);
 
 const props = defineProps({
   cartData: Array,
-  isDisabled: Boolean
+  isDisabled: Boolean,
 });
 
 if (props.cartData.length === 0) {
@@ -97,13 +110,12 @@ if (props.cartData.length === 0) {
 }
 
 const handleRemove = (i) => {
-  removeProduct(i)
-}
+  removeProduct(i);
+};
 
-const handleShowTooltip = () => showTooltip.value = !showTooltip.value;
+const handleShowTooltip = () => (showTooltip.value = !showTooltip.value);
 
-console.log(showTooltip.value)
-
+console.log(showTooltip.value);
 </script>
 
 <style lang="scss"></style>
