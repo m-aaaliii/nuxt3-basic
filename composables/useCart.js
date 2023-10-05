@@ -1,17 +1,8 @@
-import { useNuxtApp, useState } from "nuxt/app";
-
-export const useCartProduct = () => useState("cart-product", () => "");
-export const useAvailableCart = () =>
-  useState("available-cart", () => [
-    // contains values
-    "green",
-    "blue",
-    "red",
-  ]);
+import { useCookie, useNuxtApp, useState } from "nuxt/app";
 
 export const useCart = () =>
   useState("cart-content", () => {
-    const { cartProduct } = useNuxtApp();
-    console.log(cartProduct, "checking cart product");
-    return [];
+    const cart = useCookie("guestCart");
+    console.log("items in cart using cookies: ", cart.value);
+    return cart.value;
   });
