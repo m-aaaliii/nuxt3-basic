@@ -128,7 +128,7 @@
                 to=""
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
                 >
-                  <span v-if="username" class="text-[12px]">
+                  <span v-if="username" class="text-[11px]">
                     Welcome, <span class="text-emerald-400 text-[16px]">{{ username }}</span>
                   </span>
                   <span class="" v-else>
@@ -199,8 +199,9 @@ let products = useCart();
 
 if (userToken.value) { 
   console.log("TOKEN >>> ", userToken.value)    // Actual Token value
-  const { payload } = useDecode();
-  username.value = payload.user;
+  const decodedUser = useUserDetails();
+  console.log(decodedUser.value, " is the user ....")
+  username.value = decodedUser.value;
 }
 
 let count = computed(() => products.value.length);

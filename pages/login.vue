@@ -70,6 +70,7 @@ let resError = ref(null);
 const user = useCookie('userJWT', {
   default: () => null
 });
+const { decodeName } = useNuxtApp();
 
 let formBody = reactive({
   username: "",
@@ -92,6 +93,7 @@ const submitForm = async () => {
   try {
     resPending = pending;
     user.value = data.value.token;
+    decodeName(user.value);
   } catch {
     resError.value = error;
   }

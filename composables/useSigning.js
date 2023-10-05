@@ -1,8 +1,7 @@
 import { useFetch } from "nuxt/app";
 
-let baseUrl = "https://fakestoreapi.com";
-
 export default async function useSignup(fBody, endpoint, mthd, lzy) {
+  let baseUrl = "https://fakestoreapi.com";
   const { data, pending, error, refresh } = await useFetch(
     `${baseUrl}/${endpoint}`,
     {
