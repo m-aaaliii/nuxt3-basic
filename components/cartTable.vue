@@ -43,7 +43,9 @@
                 </div>
               </div>
               <div class="flex-grow flex-shrink-0 text=[#000] font-[300] relative text-[14px]">
-                <span class="cursor-pointer" @mouseover="handleShowTooltip" @mouseleave="handleShowTooltip">{{ truncateString(product.title, 16) }}</span>
+                <NuxtLink :to="`/product/${product.id}`">
+                  <span class="cursor-pointer" @mouseover="handleShowTooltip" @mouseleave="handleShowTooltip">{{ truncateString(product.title, 16) }}</span>
+                </NuxtLink>
                 <p v-show="showTooltip" class="flex flex-nowrap w-full absolute top-[28px] text-[13px] bg-amber-100 py-[8px] px-[20px] capitalize text-[#333] rounded-[5px]">{{ product.title }}</p>
               </div>
             </div>

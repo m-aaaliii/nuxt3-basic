@@ -92,9 +92,7 @@ const submitForm = async () => {
   try {
     resPending = pending;
     user.value = data.value.token;
-    console.log("New Token: ", user.value)
   } catch {
-    console.log(error, " has happened!");
     resError.value = error;
   }
   

@@ -198,7 +198,7 @@ let products = useCart();
 
 
 if (userToken.value) { 
-  console.log("TOKEN >>> ", userToken.value.token)    // Actual Token value
+  console.log("TOKEN >>> ", userToken.value)    // Actual Token value
   const { payload } = useDecode();
   username.value = payload.user;
 }

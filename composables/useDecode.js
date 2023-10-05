@@ -7,6 +7,10 @@ export const useDecode = () => {
     const header = JSON.parse(atob(headerEncoded));
     const payload = JSON.parse(atob(payloadEncoded));
 
+    const decodedUserName = useUserDetails();
+    decodedUserName.value = payload.user;
+    // setDecodedUserName(payload.user);
+
     return {
       header,
       payload,
