@@ -16,12 +16,15 @@
           <Hamburger />
         </div>
         <div class="w-1/4 mobile-only:w-[100%]">
-          <form action="#" class="search-wrap">
+          <form class="search-wrap" @submit.prevent>
             <div class="relative mb-[20px] block">
               <input
-                type="search"
-                class="h-[40px] pl-[1em] pr-[4.5em] font-light bg-white border border-solid border-gray-200 block w-full pt-[0.375rem] pb-[0.375rem] leading-6 text-gray-700 outline-none rounded-[30px]"
+                type="text"
+                class="h-[40px] pl-[1em] pr-[4.5em] font-light bg-white border border-solid border-gray-200 block w-full pt-[0.375rem] pb-[0.375rem] leading-6 text-gray-700 outline-none rounded-[30px] focus:outline-none focus:border-[#88c8bc] transition transition duration-250"
                 placeholder="Search"
+                min="3"
+                @input="handleSearch(e)"
+                v-model="searchTerm"
               />
               <button
                 class="text-center h-[40px] w-[40px] absolute top-0 right-[-4px] p-0 bg-[#88c8bc] border border-solid border-[#88c8bc] cursor-pointer text-white mr-[4px] mb-[4px] text-[14px] font-normal rounded-full"
@@ -199,6 +202,7 @@
 const showDropdown = ref(false);
 const showDropdown1 = ref(false);
 let username = ref(null);
+let searchTerm = ref('');
 
 let userToken = useCookie("userJWT");
 let products = useCart();
@@ -223,6 +227,20 @@ const handleCart = () => {
   clearCart();
   console.log("runs");
 };
+
+// Search Logic
+const handleSearch = async (item) => {
+  console.log(searchTerm.value.length);
+  if (searchTerm.value.length >= 3) {
+    console.log("Running search")
+    const { data, error } = await useAllProducts('products');
+    try {
+      console.log("all Data in header: >>> ", data.value);
+    } catch {
+      console.log("Error in Data in Header: >>> ", error)
+    }
+  } else console.log("text too short");
+}
 
 </script>
 
