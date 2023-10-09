@@ -130,13 +130,14 @@
                 @mouseleave="showDropdown1 = false"
                 to=""
                 class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
-                >
-                  <span v-if="username" class="text-[11px]">
-                    Welcome, <span class="text-emerald-400 text-[16px]">{{ username }}</span>
-                  </span>
-                  <span class="" v-else>
-                    account
-                  </span>
+              >
+                <span v-if="username" class="text-[11px]">
+                  Welcome,
+                  <span class="text-emerald-400 text-[16px]">{{
+                    username
+                  }}</span>
+                </span>
+                <span class="" v-else> account </span>
                 <div
                   v-if="showDropdown1"
                   class="absolute mt-2 bg-white border border-gray-300 left-[0] top-[12px]"
@@ -170,7 +171,6 @@
                       <NuxtLink
                         to="/login"
                         class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
-                        
                         >login</NuxtLink
                       >
                     </li>
@@ -202,15 +202,15 @@
 const showDropdown = ref(false);
 const showDropdown1 = ref(false);
 let username = ref(null);
-let searchTerm = ref('');
+let searchTerm = ref("");
 
 let userToken = useCookie("userJWT");
 let products = useCart();
 
-if (userToken.value) { 
-  console.log("TOKEN >>> ", userToken.value)    // Actual Token value
+if (userToken.value) {
+  console.log("TOKEN >>> ", userToken.value); // Actual Token value
   const decodedUser = useUserDetails();
-  console.log(decodedUser.value, " is the user ....")
+  console.log(decodedUser.value, " is the user ....");
   username.value = decodedUser.value;
 }
 
@@ -229,19 +229,50 @@ const handleCart = () => {
 };
 
 // Search Logic
+// const handleSearch = async (item) => {
+//   console.log(searchTerm.value.length);
+//   if (searchTerm.value.length >= 3) {
+//     console.log("Running search")
+//     const { data, error } = await useAllProducts('products');
+//     try {
+//       console.log("all Data in header: >>> ", data.value);
+//     } catch {
+//       console.log("Error in Data in Header: >>> ", error)
+//     }
+//   } else console.log("text too short");
+// }
+function debounce(fn, wait) {
+  let timer;
+
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    const context = this;
+
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, wait);
+  };
+}
+
 const handleSearch = async (item) => {
   console.log(searchTerm.value.length);
   if (searchTerm.value.length >= 3) {
-    console.log("Running search")
-    const { data, error } = await useAllProducts('products');
+    console.log("Running search");
+    const { data, error } = await useAllProducts("products");
     try {
       console.log("all Data in header: >>> ", data.value);
     } catch {
-      console.log("Error in Data in Header: >>> ", error)
+      console.log("Error in Data in Header: >>> ", error);
     }
-  } else console.log("text too short");
-}
+  } else {
+    console.log("text too short");
+  }
+};
 
+const debouncedHandleSearch = debounce(handleSearch, 500);
 </script>
 
 <style scoped>
