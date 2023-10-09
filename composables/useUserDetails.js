@@ -1,7 +1,15 @@
-import { useState } from "nuxt/app";
+import { clearNuxtState, useCookie, useState } from "nuxt/app";
 
-export const useUserDetails = () =>
-  useState("decoded-userDetails", () => {
-    const decodedName = useCookie("decodedUsername");
-    return decodedName.value;
+export const useUserDetails = () => {
+  let decodedName = useCookie("decodedUsername");
+  let jwt = useCookie("userJWT");
+
+  return useState("decoded-userDetails", () => {
+    if (jwt.value !== null) {
+      return decodedName.value;
+    } else {
+      clearNuxtState("docoded-userDetails");
+      return (decodedName.value = null);
+    }
   });
+};

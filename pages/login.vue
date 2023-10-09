@@ -71,7 +71,7 @@ let pass = ref("");
 let resPending = ref("");
 let resError = ref(null);
 const user = useCookie("userJWT", {
-  default: () => null,
+  default: () => ref(null),
 });
 const { decodeName } = useNuxtApp();
 
@@ -100,13 +100,13 @@ const submitForm = async () => {
 
   try {
     resPending = pending;
-    user.value = data.value.token;
+    user.value = data.value.token;    // cookie
     decodeName(user.value);
   } catch {
     resError.value = error;
   }
 
-  if (resError.value !== null && user) {
+  if (resError.value !== null) {
     return;
   } else {
     const router = useRouter();

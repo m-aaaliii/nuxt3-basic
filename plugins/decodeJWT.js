@@ -3,7 +3,7 @@ import { defineNuxtPlugin } from "nuxt/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
   //   const token = useCookie("userJWT");
-  let decodedName = useUserDetails();
+  // let decodedName = useUserDetails();
   let decodedCookieName = useCookie("decodedUsername", {
     default: null,
   });
@@ -14,8 +14,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       const header = JSON.parse(atob(headerEncoded));
       const payload = JSON.parse(atob(payloadEncoded));
-      decodedName.value = payload.user;
       decodedCookieName.value = payload.user;
+      // decodedName.value = decodedCookieName.value;
 
       return decodedCookieName.value;
     } else return null;

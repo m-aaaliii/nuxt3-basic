@@ -126,7 +126,7 @@
                 @mouseover="showDropdown1 = true"
                 @mouseleave="showDropdown1 = false"
                 to=""
-                class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black"
+                class="relative pt-[10px] pb-[10px] pl-[12px] pr-[12px] text-black  cursor-pointer"
                 >
                   <span v-if="username" class="text-[11px]">
                     Welcome, <span class="text-emerald-400 text-[16px]">{{ username }}</span>
@@ -201,26 +201,32 @@ const showDropdown1 = ref(false);
 let username = ref(null);
 
 let userToken = useCookie("userJWT");
+let decodedUser = useCookie("decodedUsername");
 let products = useCart();
+const clearCart = useClearCart();
 
 if (userToken.value) { 
   console.log("TOKEN >>> ", userToken.value)    // Actual Token value
-  const decodedUser = useUserDetails();
-  console.log(decodedUser.value, " is the user ....")
-  username.value = decodedUser.value;
+  // const decodedUser = useUserDetails();
+  username.value = useUserDetails().value;
 }
+
+console.log(useUserDetails().value, " Checking User")
 
 let count = computed(() => products.value.length);
 
 const handleSignOut = () => {
   userToken.value = null;
   username.value = null;
+  decodedUser.value = null;
+  clearNuxtState("docoded-userDetails");
+  clearCart();
 };
 
 console.log(userToken.value, " signed out");
-const clearCart = useClearCart();
+
 const handleCart = () => {
-  clearCart();
+  // clearCart();
   console.log("runs");
 };
 
