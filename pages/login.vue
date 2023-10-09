@@ -20,6 +20,7 @@
         placeholder="Username"
         required
       />
+      <P v-if="resError">{{ resError }}</P>
       <label
         for="signinPassword"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -41,7 +42,6 @@
       >
         login
       </button>
-      <!-- </NuxtLink> -->
     </form>
 
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
@@ -67,9 +67,27 @@
 
 <script setup>
 let userName = ref("");
-let pass = ref("");
 let resPending = ref("");
-let resError = ref(null);
+let resError = ref("");
+watch(userName, (newUserName) => {
+  if (!isValidUserName(newUserName)) {
+    resError.value = "Invalid username format";
+  } else {
+    resError.value = "";
+  }
+});
+
+function isValidUserName(value) {
+  const minLength = 3;
+  const maxLength = 20;
+
+  if (value.length < minLength || value.length > maxLength) {
+    return false;
+  }
+
+  return true;
+}
+
 const user = useCookie("userJWT", {
   default: () => null,
 });
