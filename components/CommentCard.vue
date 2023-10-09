@@ -77,7 +77,7 @@ const props = defineProps({
 actualRating.value = props.rating;
 const newRating = computed(() => unratedStar.value - actualRating.value);
 
-console.log(typeof props.rating);
+// console.log(typeof props.rating);
 </script>
 
 <style scoped lang="scss"></style>

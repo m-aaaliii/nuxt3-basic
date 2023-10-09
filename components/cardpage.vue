@@ -8,11 +8,7 @@
     <div
       class="grid grid-cols-4 gap-[16px] mobile-only:grid mobile-only:grid-cols-1 Tab-only:grid Tab-only:grid-cols-1"
     >
-      <div
-        v-for="(p, index) in data"
-        :key="index"
-        class="Lap-only:flex"
-      >
+      <div v-for="(p, index) in data" :key="index" class="Lap-only:flex">
         <NuxtLink :to="`/product/${p.id}`">
           <card :img="p.image" :title="p.title" :price="p.price" />
         </NuxtLink>
@@ -27,14 +23,14 @@ const props = defineProps({
   message: String,
   cat: String,
 });
-console.log(props.cat.category, " new category");
+// console.log(props.cat.category, " new category");
 
 if (props.cat.category) {
   url = `https://fakestoreapi.com/products/category/${props.cat.category}`;
 } else url = "https://fakestoreapi.com/products";
 
 const { data } = await useFetch(url);
-console.log("Category is received: ", data);
+// console.log("Category is received: ", data);
 </script>
 
 <style scoped></style>
