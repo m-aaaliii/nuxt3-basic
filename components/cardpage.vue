@@ -23,7 +23,6 @@ const props = defineProps({
   message: String,
   cat: String,
 });
-// console.log(props.cat.category, " new category");
 
 if (props.cat.category) {
   url = `https://fakestoreapi.com/products/category/${props.cat.category}`;

@@ -20,7 +20,7 @@
         placeholder="Username"
         required
       />
-      <P v-if="resError">{{ resError }}</P>
+      <p v-if="resError">{{ resError }}</p>
       <label
         for="signinPassword"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -38,7 +38,7 @@
       <!-- <NuxtLink :to="{'/': res.value}"> -->
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
-        @click="handleUser()"
+        @click="handleUser"
       >
         login
       </button>
@@ -68,6 +68,7 @@
 <script setup>
 let userName = ref("");
 let resPending = ref("");
+let pass = ref("");
 let resError = ref("");
 watch(userName, (newUserName) => {
   if (!isValidUserName(newUserName)) {
@@ -120,11 +121,13 @@ const submitForm = async () => {
     resPending = pending;
     user.value = data.value.token;
     decodeName(user.value);
+    console.log(user.value, "user name");
   } catch {
     resError.value = error;
   }
 
-  if (resError.value !== null && user) {
+  if (resError.value) {
+    console.log(resError.value, "login check");
     return;
   } else {
     const router = useRouter();
