@@ -219,7 +219,7 @@ const handleSignOut = () => {
   userToken.value = null;
   username.value = null;
   decodedUser.value = null;
-  clearNuxtState("docoded-userDetails");
+  clearNuxtState("decoded-userDetails");
   clearCart();
 };
 
