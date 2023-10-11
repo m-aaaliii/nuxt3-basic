@@ -213,7 +213,7 @@ if (userToken.value) {
 
 console.log(useUserDetails().value, " Checking User")
 
-let count = computed(() => products.value.length);
+let count = computed(() => products.value ? products.value : 0);
 
 const handleSignOut = () => {
   userToken.value = null;
