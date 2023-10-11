@@ -20,6 +20,7 @@
         placeholder="Username"
         required
       />
+      <p v-if="resError">{{ resError }}</p>
       <label
         for="signinPassword"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -37,11 +38,10 @@
       <!-- <NuxtLink :to="{'/': res.value}"> -->
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
-        @click="handleUser()"
+        @click="handleUser"
       >
         login
       </button>
-      <!-- </NuxtLink> -->
     </form>
 
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
@@ -67,9 +67,28 @@
 
 <script setup>
 let userName = ref("");
-let pass = ref("");
 let resPending = ref("");
-let resError = ref(null);
+let pass = ref("");
+let resError = ref("");
+watch(userName, (newUserName) => {
+  if (!isValidUserName(newUserName)) {
+    resError.value = "Invalid username format";
+  } else {
+    resError.value = "";
+  }
+});
+
+function isValidUserName(value) {
+  const minLength = 3;
+  const maxLength = 20;
+
+  if (value.length < minLength || value.length > maxLength) {
+    return false;
+  }
+
+  return true;
+}
+
 const user = useCookie("userJWT", {
   default: () => ref(null),
 });
@@ -102,6 +121,7 @@ const submitForm = async () => {
     resPending = pending;
     user.value = data.value.token;    // cookie
     decodeName(user.value);
+    console.log(user.value, "user name");
   } catch {
     resError.value = error;
   }

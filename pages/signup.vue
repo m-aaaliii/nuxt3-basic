@@ -20,6 +20,7 @@
         placeholder="First Name"
         required
       />
+      <P v-if="resError">{{ resError }}</P>
       <label
         for="lastName"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -34,6 +35,7 @@
         placeholder="Last Name"
         required
       />
+      <P v-if="validationError">{{ validationError }}</P>
       <label
         for="signupEmail"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -48,6 +50,7 @@
         placeholder="Email Address"
         required
       />
+      <P v-if="emailError">{{ emailError }}</P>
       <label
         for="signupPassword"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -62,17 +65,20 @@
         placeholder="Password"
         required
       />
+      <P v-if="passError">{{ passError }}</P>
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
       >
         signup
-        <!-- <NuxtLink to="/login">signup</NuxtLink> -->
       </button>
     </form>
 
     <div class="mt-[36px] text-center text-[13px] font-[montserrat]">
       <p v-if="pending" class="text-center">Loading...</p>
-      <h3 v-else-if="res" class="text-center text-[#88C8BC] font-[700] text-[18px]">
+      <h3
+        v-else-if="res"
+        class="text-center text-[#88C8BC] font-[700] text-[18px]"
+      >
         Sign Up is Successful!
       </h3>
     </div>
@@ -92,8 +98,96 @@
 let fName = ref("");
 let lName = ref("");
 let emailAdd = ref("");
+let resError = ref("");
+let emailError = ref("");
+let passError = ref("");
+let validationError = ref("");
+let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+let specialCharacterRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>?]/;
 let pass = ref("");
+const alphanumericRegex = /^[a-zA-Z0-9]+$/;
 
+watch(fName, (newfName) => {
+  if (!isValidfName(newfName)) {
+    resError.value = "Invalid first name format";
+  } else {
+    resError.value = "";
+  }
+});
+watch(lName, (newlName) => {
+  if (!isValidlName(newlName)) {
+    validationError.value = "Invalid last name format";
+  } else {
+    validationError.value = "";
+  }
+});
+watch(emailAdd, (newemailAdd) => {
+  if (!isValidemailAdd(newemailAdd)) {
+    emailError.value = "Invalid email format";
+  } else {
+    emailError.value = "";
+  }
+});
+
+watch(pass, (newpass) => {
+  if (!isValidpass(newpass)) {
+    passError.value = "Invalid password";
+  } else {
+    passError.value = "";
+  }
+});
+
+function isValidfName(value) {
+  const minLength = 3;
+  const maxLength = 30;
+
+  if (value.length < minLength || value.length > maxLength) {
+    return false;
+  }
+  if (!alphanumericRegex.test(value)) {
+    return false;
+  }
+
+  return true;
+}
+function isValidlName(value) {
+  const minLength = 2;
+  const maxLength = 30;
+
+  if (value.length < minLength || value.length > maxLength) {
+    return false;
+  }
+  if (!alphanumericRegex.test(value)) {
+    return false;
+  }
+
+  return true;
+}
+function isValidemailAdd(email) {
+  const minLength = 2;
+  const maxLength = 30;
+
+  if (!emailRegex.test(email)) {
+    return false;
+  }
+
+  if (email.length < minLength || email.length > maxLength) {
+    return false;
+  }
+  return true;
+}
+function isValidpass(value) {
+  const minLength = 2;
+
+  if (value.length < minLength) {
+    return false;
+  }
+  if (!specialCharacterRegex.test(value) && !alphanumericRegex.test(value)) {
+    return false;
+  }
+
+  return true;
+}
 definePageMeta({
   layout: "accounts",
 });
@@ -105,8 +199,8 @@ let formBody = reactive({
   password: "",
 });
 
-let res = ref('');
-let resPending = ref('');
+let res = ref("");
+let resPending = ref("");
 
 const submitForm = () => {
   Object.assign(formBody, {
@@ -119,16 +213,13 @@ const submitForm = () => {
   console.log("the body object: ", JSON.stringify(formBody));
   let body = JSON.stringify(formBody);
 
-
-  const { data, pending, error, refresh } = useSigning(body, 'users', 'post');
+  const { data, pending, error, refresh } = useSigning(body, "users", "post");
 
   res.value = data;
   resPending = pending;
 
-  console.log(data)
-
+  console.log(data);
 };
-
 </script>
 
 <style scoped lang="scss">

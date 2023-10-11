@@ -1,9 +1,10 @@
 import { defineNuxtPlugin } from "nuxt/app";
-import { useCart } from "~/composables/useCart";
+
 import { useTotalPrice } from "~/composables/useTotalPrice";
 import { useUserDetails } from "~/composables/useUserDetails";
 
 export default defineNuxtPlugin((nuxtApp) => {
+
   let cart = reactive([]);
   let user = ref(null);
   let stateCart = useCart();
@@ -33,8 +34,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       const existingItem = cart.value.find((item) => item.id === cp.id);
       if (existingItem) {
         existingItem.count += cp.count;
-        existingItem.totalPrice = computed(() =>
-          useTotalPrice(existingItem.price, existingItem.count)
+        existingItem.totalPrice = useTotalPrice(
+          existingItem.price,
+          existingItem.count
         );
       } else {
         cart.value.push(cp);

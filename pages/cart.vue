@@ -19,11 +19,12 @@ const router = useRouter();
 
 const cart = useCart();
 if (cart.value.length !== 0) {
-  cartData = cart.value;
+  cartData.value = cart.value;
   disableBtn.value = false;
+  console.log(cartData.value, " **** UPDATED CART ****");
 }
 
-console.log(cartData, "all items");
+console.log(cartData.value, "all items");
 let disabledCheck = computed(() => (cart.value.length !== 0 ? false : true));
 console.log(disabledCheck.value, " btn disabled");
 

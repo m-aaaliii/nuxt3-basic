@@ -16,13 +16,34 @@
           <Hamburger />
         </div>
         <div class="w-1/4 mobile-only:w-[100%]">
-          <form action="#" class="search-wrap">
+          <form class="search-wrap" @submit.prevent>
             <div class="relative mb-[20px] block">
               <input
-                type="search"
-                class="h-[40px] pl-[1em] pr-[4.5em] font-light bg-white border border-solid border-gray-200 block w-full pt-[0.375rem] pb-[0.375rem] leading-6 text-gray-700 outline-none rounded-[30px]"
+                type="text"
+                class="h-[40px] pl-[1em] pr-[4.5em] font-light bg-white border border-solid border-gray-200 block w-full pt-[0.375rem] pb-[0.375rem] leading-6 text-gray-700 outline-none rounded-[30px] focus:outline-none focus:border-[#88c8bc] transition transition duration-250"
                 placeholder="Search"
+                min="3"
+                @input="handleSearch(e)"
+                v-model="searchTerm"
               />
+
+              <div
+                v-if="filteredData !== null && filteredData.length > 0"
+                class="border border-grey-300 rounded-[4px] absolute z-50 bg-[#e5f4f1] top-[50px] px-[20px] py-[20px] cursor-pointer"
+              >
+                <ul>
+                  <li
+                    v-for="search in filteredData"
+                    :key="search.id"
+                    class="text-[14px] mb-[10px] hover:text-[grey] text-normal font-[montserrat]"
+                  >
+                    <NuxtLink :to="`product/${search.id}`">
+                      {{ search.title }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </div>
+
               <button
                 class="text-center h-[40px] w-[40px] absolute top-0 right-[-4px] p-0 bg-[#88c8bc] border border-solid border-[#88c8bc] cursor-pointer text-white mr-[4px] mb-[4px] text-[14px] font-normal rounded-full"
                 type="submit"
@@ -167,7 +188,6 @@
                       <NuxtLink
                         to="/login"
                         class="pt-[2px] pb-[2px] pl-[0] pr-[0] block text-[#999999] leading-12 tracking-normal hover:text-white uppercase"
-                        
                         >login</NuxtLink
                       >
                     </li>
@@ -199,6 +219,10 @@
 const showDropdown = ref(false);
 const showDropdown1 = ref(false);
 let username = ref(null);
+let items = ref([]);
+let searchTerm = ref("");
+let receivedData = ref();
+let filteredData = ref(null);
 
 let userToken = useCookie("userJWT");
 let decodedUser = useCookie("decodedUsername");
@@ -213,7 +237,7 @@ if (userToken.value) {
 
 console.log(useUserDetails().value, " Checking User")
 
-let count = computed(() => products.value ? products.value : 0);
+let count = computed(() => products.value ? products.value.length : 0);
 
 const handleSignOut = () => {
   userToken.value = null;
@@ -230,6 +254,45 @@ const handleCart = () => {
   console.log("runs");
 };
 
+// Search Logic
+const handleSearch = async (item) => {
+  console.log(searchTerm.value.length);
+  if (searchTerm.value.length >= 3) {
+    console.log("Running search");
+    updateDebounceSearch(searchTerm);
+    console.log(searchTerm, "searched term");
+  } else console.log("text too short");
+};
+
+const debounce = (cb, delay = 800) => {
+  console.log("time to delay: **", delay);
+  let load;
+  return (...args) => {
+    clearTimeout(load);
+    load = setTimeout(() => {
+      cb(...args);
+    }, delay);
+  };
+};
+
+const updateDebounceSearch = debounce(async (term) => {
+  const { data, error } = await useFetch("https://fakestoreapi.com/products");
+  // term.value.toLowerCase();
+  try {
+    console.log("all Data in header: >>> ", data.value[0]);
+    receivedData.value = data.value;
+    console.log(receivedData.value, " search term");
+  } catch {
+    console.log("Error in Data in Header: >>> ", error);
+  }
+  if (receivedData.value) {
+    filteredData.value = receivedData.value.filter((item) =>
+      item.title.toLowerCase().includes(term.value.toLowerCase())
+    );
+    console.log(filteredData.value, "filtered data");
+    console.log(receivedData.value, "recieved data");
+  }
+}, 800);
 </script>
 
 <style scoped>
