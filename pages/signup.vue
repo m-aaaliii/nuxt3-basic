@@ -20,7 +20,7 @@
         placeholder="First Name"
         required
       />
-      <P v-if="resError">{{ resError }}</P>
+      <p v-if="resError">{{ resError }}</p>
       <label
         for="lastName"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -35,7 +35,7 @@
         placeholder="Last Name"
         required
       />
-      <P v-if="validationError">{{ validationError }}</P>
+      <p v-if="validationError">{{ validationError }}</p>
       <label
         for="signupEmail"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -50,7 +50,7 @@
         placeholder="Email Address"
         required
       />
-      <P v-if="emailError">{{ emailError }}</P>
+      <p v-if="emailError">{{ emailError }}</p>
       <label
         for="signupPassword"
         class="block mb-[5px] mt-[30px] font-[rokkitt] font-[300] pl-[16px]"
@@ -65,7 +65,7 @@
         placeholder="Password"
         required
       />
-      <P v-if="passError">{{ passError }}</P>
+      <p v-if="passError">{{ passError }}</p>
       <button
         class="bg-[#88C8BC] text-white w-full py-[12px] px-[24px] rounded-[30px] uppercase text-[14px] mt-[30px] text-[montserrat] formBtn"
       >
